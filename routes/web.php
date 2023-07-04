@@ -12,6 +12,8 @@ use App\Http\Controllers\Barang\StokBarangController;
 use App\Http\Controllers\Barang\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\Barang\BarangKeluar\BarangKeluarController;
 
+use App\Http\Controllers\StockOpnameController;
+
 use App\Models\User;
 use App\Models\Barang;
 
@@ -92,6 +94,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/stok-barang', StokBarangController::class);
     Route::resource('/barang-masuk', BarangMasukController::class);
     Route::resource('/barang-keluar', BarangKeluarController::class);
+    Route::resource('/stock-opname', StockOpnameController::class);
 });
 
 /*------------------------------------------

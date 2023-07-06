@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Barang;
+use App\Models\StockOpname;
 
 class StockOpnameController extends Controller
 {
@@ -13,7 +15,9 @@ class StockOpnameController extends Controller
      */
     public function index()
     {
-        return view('admin.stock-opname.index');
+        $barang = Barang::all();
+        $stock_opname = StockOpname::all();
+        return view('admin.stock-opname.index', compact('barang', 'stock_opname'));
     }
 
     /**
@@ -34,7 +38,16 @@ class StockOpnameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $stock_opname = new StockOpname;
+        $stock_opname->nama_barang = $request->nama_barang;
+        $stock_opname->kode_barang = $request->kode_barang;
+        $stock_opname->stok_aplikasi = $request->stok_aplikasi;
+        $stock_opname->stok_fisik = $request->stok_fisik;
+        $stock_opname->selisih = $stock_opname->stok_aplikasi - $stock_opname->stok_fisik;
+
+        $stock_opname->save();
+
+        return redirect()->route('stock-opname.index')->with('success', 'Stock Opname Berhasil Ditambahkan!');
     }
 
     /**
@@ -80,5 +93,11 @@ class StockOpnameController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getKodeBarang()
+    {
+        $barang = Barang::all();
+        return response()->json($barang);
     }
 }

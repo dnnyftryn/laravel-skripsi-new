@@ -25,7 +25,7 @@
                  with font-awesome or any other icon font library -->
             <li class="nav-header">Data Master</li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{route('admin.index')}}" class="nav-link">
                     <i class="nav-icon fas fa-home"></i>
                 <p>
                     Dashboard

@@ -89,6 +89,7 @@ All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin', [DashboardAdminController::class, 'index'])->name('admin.index');
+    Route::get('/kodebarang', [StockOpnameController::class, 'getKodeBarang'])->name('kodebarang.index');
 
     Route::resource('/barang', BarangController::class);
     Route::resource('/stok-barang', StokBarangController::class);

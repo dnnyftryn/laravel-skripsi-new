@@ -16,10 +16,21 @@
             <th>Nama Barang</th>
             <th>Stok Aplikasi</th>
             <th>Stok Fisik</th>
+            <th>Selisih</th>
+            <th>Dibuat Tanggal</th>
           </tr>
           </thead>
           <tbody>
-
+            @foreach ($stock_opname as $item)
+                <tr>
+                    <td>{{ $item->kode_barang }}</td>
+                    <td>{{ $item->nama_barang }}</td>
+                    <td>{{ $item->stok_aplikasi }}</td>
+                    <td>{{ $item->stok_fisik }}</td>
+                    <td>{{ $item->selisih }}</td> 
+                    <td>{{ $item->created_at }}</td>
+                </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

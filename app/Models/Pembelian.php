@@ -9,16 +9,15 @@ class Pembelian extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaksi';
+    protected $table = 'pembelian';
 
     protected $fillable = [
-        'id_member',
-        'invoice',
-        'alamat',
+        'nama_barang',
+        'kode_barang',
+        'jumlah_barang',
+        'harga_barang',
+        'total_harga',
         'pembayaran',
-        'hari',
-        'jatuh_tempo',
-        'total',
-        'status'
+        'nama_penjual'
     ];
 }

@@ -28,32 +28,6 @@
           </tr>
           </thead>
           <tbody>
-            @foreach ($transaksi as $item)
-                <tr>
-                    <td>{{ $item->invoice }}</td>
-                    <td>{{ $item->id_member }}</td>
-                    <td>{{ $item->alamat }}</td>
-                    <td>{{ $item->pembayaran }}</td>
-                    <td>{{ $item->hari }}</td>
-                    <td>{{ $item->jatuh_tempo }}</td>
-                    <td>{{ $item->status }}</td>
-                    <td>
-                        <a href="" class="btn btn-sm btn-info">
-                          <i class="fas fa-search"></i>
-                        </a>
-                        <a href="" class="btn btn-sm btn-warning">
-                          <i class="fas fa-pen"></i>
-                        </a>
-                        <form action="" method="post" class="d-inline">
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data?')">
-                              <i class="fas fa-trash"></i>
-                            </button>
-                        </form>  
-                    </td>   
-                </tr>
-            @endforeach
           </tbody>
         </table>
       </div>

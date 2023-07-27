@@ -38,24 +38,6 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($keranjang as $keranjangs)
-              <tr>
-                <td>{{ $keranjangs->kode_barang }}</td>
-                <td>{{ $keranjangs->nama_barang }}</td>
-                <td>{{ $keranjangs->jumlah }}</td>
-                <td>{{ $keranjangs->satuan }}</td>
-                <td>{{ $keranjangs->discount }}</td>
-                <td>{{ $keranjangs->total }}</td>
-                <td>
-                  <form action="{{ route('keranjang.destroy', ['id', $keranjangs->id]) }}" method="Post">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-danger"><i
-                              class="fas fa-trash"></i></button>
-                  </form>
-              </td>
-            </tr>
-              @endforeach
             </tbody>
           </table>
         </div>
@@ -72,7 +54,7 @@
         <div class="row">
           <div class="form-group col-3">
             <label for="nomor_faktur">Nomor Faktur</label>
-            <input type="text" class="form-control" value="{{ $invoice }}"  id="nomor_faktur" name="nomor_faktur" @readonly(true)>
+            <input type="text" class="form-control" value=""  id="nomor_faktur" name="nomor_faktur" @readonly(true)>
           </div>
           <div class="form-group col-3">
             <label for="tanggal">Tanggal</label>
@@ -80,7 +62,7 @@
           </div>
           <div class="form-group col-2">
             <label for="Total">Total</label>
-            <input type="text" class="form-control" value="{{ $total }}" id="total" name="total" @readonly(true)>
+            <input type="text" class="form-control" value="" id="total" name="total" @readonly(true)>
           </div>
           <div class="form-group col-2">
             <label for="Bayar">Bayar</label>
@@ -99,9 +81,6 @@
           <div class="form-group col-3">
             <label>Supplier</label>
             <select class="form-control select2" style="width: 100%;" name="nama_supplier" id="nama_supplier">
-              @foreach ($supplier as $suppliers)
-                <option value="{{ $suppliers->nama_supplier }}">{{ $suppliers->nama_supplier }}</option>
-              @endforeach
             </select>
           </div>
           <div class="form-group col-3">

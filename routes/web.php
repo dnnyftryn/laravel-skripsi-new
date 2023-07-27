@@ -14,6 +14,8 @@ use App\Http\Controllers\Barang\BarangKeluar\BarangKeluarController;
 
 use App\Http\Controllers\StockOpnameController;
 
+use App\Http\Controllers\Transaksi\PembelianController;
+
 use App\Models\User;
 use App\Models\Barang;
 
@@ -96,6 +98,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/barang-masuk', BarangMasukController::class);
     Route::resource('/barang-keluar', BarangKeluarController::class);
     Route::resource('/stock-opname', StockOpnameController::class);
+    Route::resource('/pembelian', PembelianController::class);
 });
 
 /*------------------------------------------

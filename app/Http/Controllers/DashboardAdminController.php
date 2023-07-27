@@ -19,9 +19,9 @@ class DashboardAdminController extends Controller
             $barang = Barang::latest()->count('id');
             $supplier = Supplier::latest()->count('id');
             // $member = Member::latest()->count('id');
-            $transaksi = Penjualan::orderBy('jatuh_tempo', 'DESC')->get();
+            // $transaksi = Penjualan::orderBy('jatuh_tempo', 'DESC')->get();
             // $kasir = Kasir::latest()->count('id');
-            return view('admin.dashboard', compact('users', 'barang', 'supplier', 'transaksi'));
+            return view('admin.dashboard', compact('users', 'barang', 'supplier'));
         } else {
             return view('auth.login');
         }

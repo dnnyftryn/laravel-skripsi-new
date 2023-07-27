@@ -63,20 +63,12 @@
         });
 
         document.getElementById('bayar').addEventListener('mousemove', function() {
-            var total = parseInt('{{ $total }}');
-            var bayar = document.getElementById('bayar').value;
-            var kembali = document.getElementById('kembali').value;
-
-            var jumlah = bayar - total;
+            
             document.getElementById('kembali').value = jumlah;
         });
         
         document.getElementById('kembali').addEventListener('mousemove', function() {
-            var total = parseInt('{{ $total }}');
-            var bayar = document.getElementById('bayar').value;
-            var kembali = document.getElementById('kembali').value;
-
-            var jumlah = bayar - total;
+      
             document.getElementById('kembali').value = jumlah;
         });
 </script>

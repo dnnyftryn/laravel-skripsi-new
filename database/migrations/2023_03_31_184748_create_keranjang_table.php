@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('satuan');
             $table->integer('discount')->nullable();
             $table->string('total');
-            $table->string('state');
+            $table->string('status');
             $table->timestamps();
         });
     }

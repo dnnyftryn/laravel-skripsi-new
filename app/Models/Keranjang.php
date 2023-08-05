@@ -20,6 +20,6 @@ class Keranjang extends Model
         'satuan',
         'discount',
         'total',
-        'state'
+        'status'
     ];
 }

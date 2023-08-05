@@ -14,7 +14,20 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        return view('admin.transaksi.pembelian.index');
+        $keranjang = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'pembelian')
+            ->get();
+        $nomor_faktur = 'PEMB-'.date('YmdHis').'-'.rand(1000, 9999);
+        $total_bayar = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'pembelian')
+            ->sum('total');
+
+        $supplier = \DB::table('supplier')
+            ->get();
+        
+        return view('admin.transaksi.pembelian.index', compact('nomor_faktur', 'keranjang', 'total_bayar', 'supplier'));
     }
 
     /**
@@ -35,7 +48,7 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         
     }
 
     /**

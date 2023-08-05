@@ -15,6 +15,7 @@ use App\Http\Controllers\Barang\BarangKeluar\BarangKeluarController;
 use App\Http\Controllers\StockOpnameController;
 
 use App\Http\Controllers\Transaksi\PembelianController;
+use App\Http\Controllers\Transaksi\KeranjangController;
 
 use App\Models\User;
 use App\Models\Barang;
@@ -92,6 +93,10 @@ All Admin Routes List
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin', [DashboardAdminController::class, 'index'])->name('admin.index');
     Route::get('/kodebarang', [StockOpnameController::class, 'getKodeBarang'])->name('kodebarang.index');
+
+    Route::post('/keranjang/pembelian/store', [KeranjangController::class, 'store_pembelian'])->name('keranjang_pembelian.store');
+    Route::post('/keranjang/penjualan/store', [KeranjangController::class, 'store_penjualan'])->name('keranjang_penjualan.store');
+    Route::delete('/keranjang/{id}', [KeranjangController::class, 'destroy'])->name('keranjang.destroy');
 
     Route::resource('/barang', BarangController::class);
     Route::resource('/stok-barang', StokBarangController::class);

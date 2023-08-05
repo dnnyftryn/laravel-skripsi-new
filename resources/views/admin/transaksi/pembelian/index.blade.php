@@ -63,6 +63,10 @@
         });
 
         document.getElementById('bayar').addEventListener('mousemove', function() {
+            var total = document.getElementById('total').value;
+            var bayar = document.getElementById('bayar').value;
+
+            var jumlah = bayar - total;
             
             document.getElementById('kembali').value = jumlah;
         });

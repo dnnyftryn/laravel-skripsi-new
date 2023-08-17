@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DetailPembelian extends Model
+class PembelianDetail extends Model
 {
     use HasFactory;
 
-    protected $table = 'detail_pembelian';
+    protected $table = 'pembelian_detail';
 
     protected $fillable = [
+        'user_id',
         'invoice_id',
         'kode_barang',
         'nama_barang',

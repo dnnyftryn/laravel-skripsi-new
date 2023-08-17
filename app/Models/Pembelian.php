@@ -12,12 +12,12 @@ class Pembelian extends Model
     protected $table = 'pembelian';
 
     protected $fillable = [
-        'nama_barang',
-        'kode_barang',
-        'jumlah_barang',
-        'harga_barang',
-        'total_harga',
+        'invoice_id',
+        'nama_penjual',
         'pembayaran',
-        'nama_penjual'
+        'jatuh_tempo',
+        'tanggal_jatuh_tempo',
+        'alamat',
+        'tanggal'
     ];
 }

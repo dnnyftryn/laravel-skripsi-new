@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('detail_pembelian', function (Blueprint $table) {
+        Schema::create('pembelian_detail', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
             $table->string('invoice_id');
             $table->string('kode_barang');
             $table->string('nama_barang');

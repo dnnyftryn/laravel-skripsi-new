@@ -73,7 +73,38 @@
                 </div>
             </div>
 
-            @include('admin.table')
+            <section class="content">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col">
+                        @include('admin.table_pembelian')
+                        <!-- /.card -->
+                        @include('admin.table_penjualan')
+                        <!-- /.card -->
+                    </div>
+                  </div>
+                </div>
+            </section>
+
+            {{-- <div class="container">
+                <div class="row">
+                  <div class="col-lg-6">
+                    @include('admin.table_pembelian')
+                  </div>
+                  <div class="col-lg-6">
+                    @include('admin.table_penjualan')
+                  </div>
+                </div>
+              </div> --}}
+
+            {{-- <div class="row">
+                <div class="col-sm">
+                    @include('admin.table')
+                </div>
+                <div class="col-sm">
+                    @include('admin.table')
+                </div>
+            </div> --}}
             
         </div>
 

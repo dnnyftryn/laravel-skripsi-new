@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Transaksi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Penjualan;
 
 class PenjualanController extends Controller
 {
@@ -14,7 +15,20 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        //
+        $invoice = 'PENJ-'.date('YmdHis').'-'.rand(1000, 9999);
+        $total = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'penjualan')
+            ->sum('total');
+        $member = \DB::table('member')
+            ->select('id_member', 'nama_member')
+            ->get();
+        $keranjang = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'penjualan')
+            ->get();
+
+        return view('admin.transaksi.penjualan.index', compact('invoice', 'total', 'member', 'keranjang'));
     }
 
     /**
@@ -35,7 +49,48 @@ class PenjualanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $penjualan = new Penjualan;
+        $penjualan->invoice_id = $request->nomor_faktur;
+        $penjualan->nama_pembeli = $request->id_member;
+        $penjualan->pembayaran = $request->pembayaran;
+        $penjualan->tanggal = $request->tanggal;
+        $penjualan->alamat = $request->alamat;
+        
+        if ($request->pembayaran == 'kredit') {
+            $penjualan->jatuh_tempo = $request->jatuh_tempo;
+            $penjualan->tanggal_jatuh_tempo = $request->tanggal_jatuh_tempo;
+        } else {
+            $penjualan->jatuh_tempo = null;
+            $penjualan->tanggal_jatuh_tempo = null;
+        }
+
+        $penjualan->save();
+
+        $keranjang = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'penjualan')
+            ->get();
+        
+        foreach ($keranjang as $item) {
+            $detail_penjualan = \DB::table('penjualan_detail')
+                ->insert([
+                    'invoice_id' => $request->nomor_faktur,
+                    'kode_barang' => $item->kode_barang,
+                    'nama_barang' => $item->nama_barang,
+                    'jumlah' => $item->jumlah,
+                    'harga' => $item->harga,
+                    'satuan' => $item->satuan,
+                    'discount' => $item->discount,
+                    'total' => $item->total,
+                ]);
+        }
+
+        \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'penjualan')
+            ->delete();
+        
+        return redirect()->route('penjualan.index')->with('success', 'Transaksi penjualan berhasil disimpan');
     }
 
     /**

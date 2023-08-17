@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('penjualan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_barang');
-            $table->string('kode_barang');
-            $table->integer('jumlah_barang');
-            $table->integer('harga_barang');
-            $table->integer('total_harga');
-            $table->string('pembayaran');
+            $table->string('invoice_id');
             $table->string('nama_pembeli');
+            $table->string('pembayaran');
+            $table->integer('jatuh_tempo')->nullable();
+            $table->date('tanggal_jatuh_tempo')->nullable();
+            $table->string('alamat');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

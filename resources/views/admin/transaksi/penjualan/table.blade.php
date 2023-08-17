@@ -37,25 +37,24 @@
                 </tr>
               </thead>
               <tbody>
-                  @foreach ($keranjang as $keranjangs)
-                  <tr>
-                      <td>{{ $keranjangs->kode_barang }}</td>
-                      <td>{{ $keranjangs->nama_barang }}</td>
-                      <td>{{ $keranjangs->jumlah }}</td>
-                      <td>{{ $keranjangs->satuan }}</td>
-                      <td>{{ $keranjangs->discount }}</td>
-                      <td>{{ $keranjangs->total }}</td>
-                      <td>
-                        <form action="{{ route('keranjang.destroy', ['id', $keranjangs->id]) }}" method="Post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger"><i
-                                    class="fas fa-trash"></i></button>
-                        </form>
-                    </td>
-                  </tr>
-                  @endforeach
-              </tbody>
+                @foreach ($keranjang as $keranjangs)
+                <tr>
+                  <td>{{ $keranjangs->kode_barang }}</td>
+                  <td>{{ $keranjangs->nama_barang }}</td>
+                  <td>{{ $keranjangs->jumlah }}</td>
+                  <td>{{ $keranjangs->satuan }}</td>
+                  <td>{{ $keranjangs->discount }}</td>
+                  <td>{{ $keranjangs->total }}</td>
+                  <td>
+                    <form action="{{ route('keranjang.destroy', $keranjangs->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                    </form>
+                  </td>
+                </tr>
+                @endforeach
+              <tbody>
             </table>
           </div>
           <!-- /.card-body -->

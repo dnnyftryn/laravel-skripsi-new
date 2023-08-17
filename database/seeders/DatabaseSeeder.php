@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             UserLevelSeeder::class,
             SatuanSeeder::class,
-            BarangSeeder::class
+            BarangSeeder::class,
+            MemberSeeder::class,
         ]);
     }
 }

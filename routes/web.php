@@ -15,6 +15,7 @@ use App\Http\Controllers\Barang\BarangKeluar\BarangKeluarController;
 use App\Http\Controllers\StockOpnameController;
 
 use App\Http\Controllers\Transaksi\PembelianController;
+use App\Http\Controllers\Transaksi\PenjualanController;
 use App\Http\Controllers\Transaksi\KeranjangController;
 
 use App\Models\User;
@@ -92,6 +93,8 @@ All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin', [DashboardAdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/{id}', [DashboardAdminController::class, 'show'])->name('admin.show');
+
     Route::get('/kodebarang', [StockOpnameController::class, 'getKodeBarang'])->name('kodebarang.index');
 
     Route::post('/keranjang/pembelian/store', [KeranjangController::class, 'store_pembelian'])->name('keranjang_pembelian.store');
@@ -104,6 +107,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/barang-keluar', BarangKeluarController::class);
     Route::resource('/stock-opname', StockOpnameController::class);
     Route::resource('/pembelian', PembelianController::class);
+    Route::resource('/penjualan', PenjualanController::class);
 });
 
 /*------------------------------------------

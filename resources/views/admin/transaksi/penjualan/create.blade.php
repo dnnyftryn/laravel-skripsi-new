@@ -1,4 +1,4 @@
-<form action="{{ route('keranjang.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('keranjang_penjualan.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="card card-success">
         <div class="card-header">

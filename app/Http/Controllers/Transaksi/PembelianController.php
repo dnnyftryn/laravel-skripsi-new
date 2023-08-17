@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Transaksi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Pembelian;
 
 class PembelianController extends Controller
 {
@@ -48,7 +49,49 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-         
+        $pembelian = new Pembelian;
+        $pembelian->invoice_id = $request->nomor_faktur;
+        $pembelian->nama_penjual = $request->nama_supplier;
+        $pembelian->pembayaran = $request->pembayaran;
+        $pembelian->tanggal = $request->tanggal;
+        $pembelian->alamat = $request->alamat;
+
+        if ($request->pembayaran == 'kredit') {
+            $pembelian->jatuh_tempo = $request->jatuh_tempo;
+            $pembelian->tanggal_jatuh_tempo = $request->tanggal_jatuh_tempo;
+        } else {
+            $pembelian->jatuh_tempo = null;
+            $pembelian->tanggal_jatuh_tempo = null;
+        }
+
+        $pembelian->save();
+
+        $keranjang = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'pembelian')
+            ->get();
+
+        foreach ($keranjang as $item) {
+            $detail_pembelian = \DB::table('pembelian_detail')
+                ->insert([
+                    'user_id' => auth()->user()->id, // tambahkan ini untuk mengetahui siapa yang melakukan transaksi, bisa saja diisi dengan '1' atau '2' atau '3' atau '4' atau '5
+                    'invoice_id' => $request->nomor_faktur,
+                    'kode_barang' => $item->kode_barang,
+                    'nama_barang' => $item->nama_barang,
+                    'jumlah' => $item->jumlah,
+                    'harga' => $item->harga,
+                    'satuan' => $item->satuan,
+                    'discount' => $item->discount,
+                    'total' => $item->total,
+                ]);
+        }
+
+        \DB::table('keranjang')
+        ->where('user_id', auth()->user()->id)
+        ->where('status', 'pembelian')
+        ->delete();
+
+        return redirect()->route('pembelian.index')->with('success', 'Transaksi pembelian berhasil disimpan');
     }
 
     /**
@@ -59,7 +102,16 @@ class PembelianController extends Controller
      */
     public function show($id)
     {
-        //
+        // untuk menampilkan detail pembelian
+        $pembelian = \DB::table('pembelian')
+            ->where('invoice_id', $id)
+            ->first();
+
+        $detail_pembelian = \DB::table('pembelian_detail')
+            ->where('invoice_id', $id)
+            ->get();
+
+        return view('admin.transaksi.faktur', compact('pembelian', 'detail_pembelian'));
     }
 
     /**

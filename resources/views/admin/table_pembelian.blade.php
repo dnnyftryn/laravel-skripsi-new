@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Data Pembelian</h3>
+    <h3 class="card-title">Data Penjualan</h3>
   </div>
   <!-- /.card-header -->
   <div class="card-body">
@@ -17,8 +17,8 @@
         <th>Aksi</th>
       </tr>
       </thead>
+        <tbody>
           @foreach ($penjualan as $item)
-          <tbody>
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->invoice_id }}</td>
@@ -43,9 +43,11 @@
                   </form>
                 </td>
             </tr>
-        </tbody>
-      @endforeach
+        @endforeach
+      </tbody>
     </table>
   </div>
   <!-- /.card-body -->
 </div>
+
+@yield('nama-faktur')

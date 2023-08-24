@@ -74,7 +74,8 @@ class PembelianController extends Controller
         foreach ($keranjang as $item) {
             $detail_pembelian = \DB::table('pembelian_detail')
                 ->insert([
-                    'user_id' => auth()->user()->id, // tambahkan ini untuk mengetahui siapa yang melakukan transaksi, bisa saja diisi dengan '1' atau '2' atau '3' atau '4' atau '5
+                    // tambahkan ini untuk mengetahui siapa yang melakukan transaksi, bisa saja diisi dengan '1' atau '2' atau '3' atau '4' atau '5
+                    'user_id' => auth()->user()->id,
                     'invoice_id' => $request->nomor_faktur,
                     'kode_barang' => $item->kode_barang,
                     'nama_barang' => $item->nama_barang,
@@ -83,6 +84,18 @@ class PembelianController extends Controller
                     'satuan' => $item->satuan,
                     'discount' => $item->discount,
                     'total' => $item->total,
+                ]);
+            
+            $barang = \DB::table('barang')
+                ->where('kode_barang', $item->kode_barang)
+                ->first();
+            
+            $stok = $barang->jumlah + $item->jumlah;
+
+            $update_stok = \DB::table('barang')
+                ->where('kode_barang', $item->kode_barang)
+                ->update([
+                    'jumlah' => $stok
                 ]);
         }
 

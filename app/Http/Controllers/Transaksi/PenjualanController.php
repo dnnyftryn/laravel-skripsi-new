@@ -83,6 +83,18 @@ class PenjualanController extends Controller
                     'discount' => $item->discount,
                     'total' => $item->total,
                 ]);
+            
+            $barang = \DB::table('barang')
+                ->where('kode_barang', $item->kode_barang)
+                ->first();
+            
+            $stok = $barang->jumlah - $item->jumlah;
+
+            $update_stok = \DB::table('barang')
+                ->where('kode_barang', $item->kode_barang)
+                ->update([
+                    'jumlah' => $stok,
+                ]);
         }
 
         \DB::table('keranjang')

@@ -14,6 +14,7 @@
     <link rel = "icon" href ="http://www.uutbeef.com/assets/img/logo/logo.png" type = "image/x-icon">
 
     @include('layouts.template.header')
+    @yield('style')
 
     @livewireStyles
 </head>

@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Data Penjualan`</h3>
+    <h3 class="card-title">Data Pembelian`</h3>
   </div>
   <!-- /.card-header -->
   <div class="card-body">
@@ -28,7 +28,7 @@
               <td>{{ $item->tanggal_jatuh_tempo }}</td>
               <td>{{ $item->jatuh_tempo }}</td>
               <td>
-                  <a href="" class="btn btn-info btn-sm">
+                  <a href="{{ route('admin.show', $item->id) }}" class="btn btn-info btn-sm">
                     <i class="fas fa-print"></i>
                   </a>
                   <a href="" class="btn btn-warning btn-sm">

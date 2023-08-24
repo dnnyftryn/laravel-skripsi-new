@@ -95,6 +95,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin', [DashboardAdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/{id}', [DashboardAdminController::class, 'show'])->name('admin.show');
 
+    Route::get('/print-faktur-pembelian/{id}', [DashboardAdminController::class, 'print_faktur_pembelian'])->name('print_faktur_pembelian');
+
     Route::get('/kodebarang', [StockOpnameController::class, 'getKodeBarang'])->name('kodebarang.index');
 
     Route::post('/keranjang/pembelian/store', [KeranjangController::class, 'store_pembelian'])->name('keranjang_pembelian.store');

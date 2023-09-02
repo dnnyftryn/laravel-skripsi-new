@@ -42,7 +42,7 @@
     <div class="invoice">
       <h1>Invoice</h1>
       <div class="row">
-        <div class="col-sm-8">
+        <div>
           <address>
             <br>
             <strong>CV. Uut Beef</strong><br>
@@ -52,7 +52,7 @@
           </address>
         </div>
         
-        <div class="col-sm-4">
+        <div>
           Cirebon, {{ $date }} <br>
           <address>
             <strong>Kepada, {{ $pembelian->nama_pembeli }} </strong><br>
@@ -104,10 +104,10 @@
 
       <div class="footer">
         <div class="row">
-          <div class="col">
+          <div>
               <p>Tanda Terima <br><br><br><br>  (__________________________)</p>
           </div>
-          <div class="col">
+          <div>
             <p>Hormat Kami <br><br><br><br>  (__________________________)</p>
           </div>
         </div>

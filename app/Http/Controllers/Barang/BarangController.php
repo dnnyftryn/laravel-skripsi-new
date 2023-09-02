@@ -99,7 +99,7 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $barang = Barang::findOrfail($id);
+        $barang                 = Barang::findOrfail($id);
         $barang->kode_barang    = $request->kode_barang;
         $barang->nama_barang    = $request->nama_barang;
         $barang->jumlah         = $request->jumlah;

@@ -43,9 +43,9 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="{{route('kategori.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori Produk</p>
+                    <p>Kategori Barang</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -55,7 +55,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="{{route('barang.create')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tambah Barang</p>
                   </a>

@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Barang\BarangController;
 use App\Http\Controllers\Barang\StokBarangController;
+use App\Http\Controllers\Barang\KategoriBarangController;
 
 use App\Http\Controllers\Barang\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\Barang\BarangKeluar\BarangKeluarController;
@@ -101,6 +102,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::post('/keranjang/pembelian/store', [KeranjangController::class, 'store_pembelian'])->name('keranjang_pembelian.store');
     Route::post('/keranjang/penjualan/store', [KeranjangController::class, 'store_penjualan'])->name('keranjang_penjualan.store');
+
     Route::delete('/keranjang/{id}', [KeranjangController::class, 'destroy'])->name('keranjang.destroy');
 
     Route::resource('/barang', BarangController::class);
@@ -110,6 +112,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/stock-opname', StockOpnameController::class);
     Route::resource('/pembelian', PembelianController::class);
     Route::resource('/penjualan', PenjualanController::class);
+    Route::resource('/kategori', KategoriBarangController::class);
+    Route::resource('/stok-opname', StokBarangController::class);
 });
 
 /*------------------------------------------

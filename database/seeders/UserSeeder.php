@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -16,28 +17,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            [
-               'name'=>'Admin',
-               'email'=>'admin@uutbeef.com',
-               'type'=>1,
-               'password' => Hash::make('12345678'),
-               'created_at' => now()
-            ],
-            [
-                'name'=>'User',
-                'email'=>'user@uutbeef.com',
-                'type'=>0,
-                'password' => Hash::make('12345678'),
-                'created_at' => now()
-             ],
-             [
-                'name'=>'Manager',
-                'email'=>'manager@uutbeef.com',
-                'type'=>2,
-                'password' => Hash::make('12345678'),
-                'created_at' => now()
-             ]
-        ]);
+
+        $faker = \Faker\Factory::create('id_ID');
+
+        for ($i = 0; $i < 10; $i++) {
+            User::create([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => Hash::make('password'),
+                'type' => $faker->numberBetween(0, 3),
+                'created_at' => now(),
+            ]);
+        }
     }
 }

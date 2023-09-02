@@ -47,6 +47,7 @@
 
                         $('#nama_barang').val(dataCust2[val].nama_barang);
                         $('#harga').val(dataCust2[val].harga_jual);
+                        $('#stok_aplikasi').val(dataCust2[val].jumlah);
                     },
                 });
             }

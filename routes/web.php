@@ -9,6 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Barang\BarangController;
 use App\Http\Controllers\Barang\StokBarangController;
 use App\Http\Controllers\Barang\KategoriBarangController;
+use App\Http\Controllers\Barang\LaporanPembelianController;
+use App\Http\Controllers\Barang\LaporanPenjualanController;
 
 use App\Http\Controllers\Barang\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\Barang\BarangKeluar\BarangKeluarController;
@@ -114,6 +116,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/penjualan', PenjualanController::class);
     Route::resource('/kategori', KategoriBarangController::class);
     Route::resource('/stok-opname', StokBarangController::class);
+    Route::resource('/laporan-penjualan', LaporanPenjualanController::class);
+    Route::resource('/laporan-pembelian', LaporanPembelianController::class);
 });
 
 /*------------------------------------------

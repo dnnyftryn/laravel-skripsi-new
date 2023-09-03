@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Barang;
 
 use App\Http\Controllers\Controller;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class LaporanPembelianController extends Controller
@@ -14,7 +15,8 @@ class LaporanPembelianController extends Controller
      */
     public function index()
     {
-        //
+        $nama_pembeli = Member::all();
+        return view('admin.barang.laporan-barang.pembelian.index', compact('nama_pembeli'));   
     }
 
     /**

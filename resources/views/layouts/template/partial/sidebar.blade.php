@@ -130,13 +130,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="{{route('laporan-penjualan.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Laporan Penjualan</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="{{route('laporan-pembelian.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Laporan Pembelian</p>
                   </a>

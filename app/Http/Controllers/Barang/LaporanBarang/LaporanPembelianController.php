@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Barang;
+namespace App\Http\Controllers\Barang\LaporanBarang;
 
 use App\Http\Controllers\Controller;
-use App\Models\Member;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class LaporanPembelianController extends Controller
@@ -15,8 +15,8 @@ class LaporanPembelianController extends Controller
      */
     public function index()
     {
-        $nama_pembeli = Member::all();
-        return view('admin.barang.laporan-barang.pembelian.index', compact('nama_pembeli'));   
+        $nama_pembeli = Supplier::all();
+        return view('admin.barang.laporan-barang.pembelian.index', compact('nama_pembeli'));
     }
 
     /**
@@ -92,44 +92,56 @@ class LaporanPembelianController extends Controller
 
     public function cari(Request $request)
     {
+        $query = "SELECT * FROM pembelian WHERE ";
 
-        $query = "SELECT * FROM pembelian";
-
-        if ($request->tanggal_after == null) {
-            $tanggal_sebelum = $request->tanggal_before;
-            $tanggal_sesudah = $request->tanggal_before;
-            
-            $query .= "tanggal = '$tanggal_sebelum'";
-        } else {
-            $tanggal_sebelum = $request->tanggal_before;
-            $tanggal_sesudah = $request->tanggal_after;
-
-            $query .= "WHERE tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'";
-        }
-
-        if ($request->tanggal_jatuh_tempo_after == null) {
-            $tanggal_sebelum_japo = $request->tanggal_jatuh_tempo_before;
-            $tanggal_sesudah_japo = $request->tanggal_jatuh_tempo_before;
-
-            $query .= "tanggal = '$tanggal_sebelum_japo'";
-            
-        } else {
-            $tanggal_sebelum_japo = $request->tanggal_jatuh_tempo_before;
-            $tanggal_sesudah_japo = $request->tanggal_jatuh_tempo_after;
-
-            $query .= "tanggal BETWEEN '$tanggal_sebelum_japo'";
-        }
+        $tanggal_sebelum = $request->tanggal_before;
+        $tanggal_sesudah = $request->tanggal_after;
 
         $nama_pembeli = $request->nama_pembeli;
-        $nama_pembeli = implode(', ', $nama_pembeli);
 
         $pembayaran = $request->pembayaran;
+        $tanggal_japo_sebelum = $request->tanggal_jatuh_tempo_before;
+        $tanggal_japo_sesudah = $request->tanggal_jatuh_tempo_after;
 
-        
-        
-        dd($query);
+        switch ($tanggal_sebelum) {
+            case null;
+                $query .= "";
+                break;
 
-        return view('admin.barang.laporan-barang.pembelian.result');   
+            default:
+                $query .= "tanggal = '$tanggal_sebelum'";
+        }
+
+        switch ($tanggal_sesudah) {
+            case null;
+                $query .= "";
+                break;
+
+            default:
+                $query .= "tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'";
+        }
+
+        switch ($nama_pembeli) {
+            case null;
+                $query .= "";
+                break;
+
+            default:
+                foreach ($nama_pembeli as $item) {
+                    $nama_pembeli_new = "'" . $item . "'";
+                }
+
+                // $query .= "AND nama_pembeli IN ($nama_pembeli_new)";
+        }
+
+
+        foreach ($nama_pembeli as $item) {
+            $nama_pembeli_new = "'" . $item . "'";
+        }
+
+        dd($item);
+
+        return view('admin.barang.laporan-barang.pembelian.result');
 
     }
 }

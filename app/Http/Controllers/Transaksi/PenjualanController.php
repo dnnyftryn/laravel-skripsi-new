@@ -57,11 +57,14 @@ class PenjualanController extends Controller
         $penjualan->alamat = $request->alamat;
         
         if ($request->pembayaran == 'kredit') {
-            $penjualan->jatuh_tempo = $request->jatuh_tempo;
-            $penjualan->tanggal_jatuh_tempo = $request->tanggal_jatuh_tempo;
+            $penjualan->jatuh_tempo = $request->hari;
+
+            $date = Carbon::parse($request->tanggal);
+            $new_date = $date->addDays($request->hari);
+            $penjualan->tanggal_jatuh_tempo = $new_date;
         } else {
             $penjualan->jatuh_tempo = null;
-            $penjualan->tanggal_jatuh_tempo = null;
+            $penjualan->tanggal_jatuh_tempo = date('Y-m-d');
         }
 
         $penjualan->save();

@@ -9,8 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Barang\BarangController;
 use App\Http\Controllers\Barang\StokBarangController;
 use App\Http\Controllers\Barang\KategoriBarangController;
-use App\Http\Controllers\Barang\LaporanPembelianController;
-use App\Http\Controllers\Barang\LaporanPenjualanController;
+use App\Http\Controllers\Barang\LaporanBarang\LaporanPembelianController;
+use App\Http\Controllers\Barang\LaporanBarang\LaporanPenjualanController;
 
 use App\Http\Controllers\Barang\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\Barang\BarangKeluar\BarangKeluarController;

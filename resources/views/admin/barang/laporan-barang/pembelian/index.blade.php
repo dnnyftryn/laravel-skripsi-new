@@ -29,18 +29,18 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-4" id="tanggal_before">
-                                    <input type="datetime-local" class="form-control" placeholder="Tanggal"  id="tanggal_before" name="tanggal_before">  
+                                    <input type="datetime-local" class="form-control" placeholder="Tanggal"  id="tanggal_before" name="tanggal_before">
                                 </div>
                                 <div class="form-group col-4" id="tanggal_after">
-                                    <input type="datetime-local" class="form-control" placeholder="Tanggal"  id="tanggal_after" name="tanggal_after">  
+                                    <input type="datetime-local" class="form-control" placeholder="Tanggal"  id="tanggal_after" name="tanggal_after">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Pembeli</label>
                                 <div class="col-sm-10">
-                                    <select class="select2" multiple="multiple" name="nama_pembeli[]"  data-placeholder="Pilih Nama Pembeli" style="width: 100%;">
+                                    <select class="select2" multiple="multiple" name="nama_pembeli[]" id="nama_pembeli[]"  data-placeholder="Pilih Nama Pembeli" style="width: 100%;">
                                         @foreach ($nama_pembeli as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_member }}</option>                                        
+                                        <option value="{{ $item->nama_supplier }}">{{ $item->nama_supplier }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -65,10 +65,10 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-4">
-                                    <input type="datetime-local" class="form-control" placeholder="tanggal_jatuh_tempo"  id="tanggal_jatuh_tempo_before" name="tanggal_jatuh_tempo_before">  
+                                    <input type="datetime-local" class="form-control" placeholder="tanggal_jatuh_tempo"  id="tanggal_jatuh_tempo_before" name="tanggal_jatuh_tempo_before">
                                 </div>
                                 <div class="form-group col-4">
-                                    <input type="datetime-local" class="form-control" placeholder="tanggal_jatuh_tempo"  id="tanggal_jatuh_tempo_after" name="tanggal_jatuh_tempo_after">  
+                                    <input type="datetime-local" class="form-control" placeholder="tanggal_jatuh_tempo"  id="tanggal_jatuh_tempo_after" name="tanggal_jatuh_tempo_after">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -94,7 +94,7 @@
         // <option value="equals">Sama Dengan</option>
         // <option value="less_than">Kurang Dari</option>
         // <option value="more_than">Lebih Dari</option>
-        
+
         $('#type').on('change', function() {
             var value = this.value;
             console.log(value);
@@ -121,6 +121,6 @@
             }
         });
     });
-    
+
 </script>
 @endsection

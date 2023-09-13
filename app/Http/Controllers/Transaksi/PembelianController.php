@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Transaksi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pembelian;
+use Carbon\Carbon;
 
 class PembelianController extends Controller
 {
@@ -49,6 +50,15 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'nomor_faktur' => 'required',
+            'nama_supplier' => 'required',
+            'pembayaran' => 'required',
+            'tanggal' => 'required',
+            'alamat' => 'required'
+        ]);
+
+
         $pembelian = new Pembelian;
         $pembelian->invoice_id = $request->nomor_faktur;
         $pembelian->nama_penjual = $request->nama_supplier;
@@ -57,11 +67,15 @@ class PembelianController extends Controller
         $pembelian->alamat = $request->alamat;
 
         if ($request->pembayaran == 'kredit') {
-            $pembelian->jatuh_tempo = $request->jatuh_tempo;
-            $pembelian->tanggal_jatuh_tempo = $request->tanggal_jatuh_tempo;
+            $pembelian->jatuh_tempo = $request->hari;
+
+            $date = Carbon::parse($request->tanggal);
+            $new_date = $date->addDays($request->hari);
+            $pembelian->tanggal_jatuh_tempo = $new_date;
+
         } else {
             $pembelian->jatuh_tempo = null;
-            $pembelian->tanggal_jatuh_tempo = null;
+            $pembelian->tanggal_jatuh_tempo = date('Y-m-d');
         }
 
         $pembelian->save();

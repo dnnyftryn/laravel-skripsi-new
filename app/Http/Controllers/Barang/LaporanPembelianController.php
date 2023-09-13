@@ -84,4 +84,52 @@ class LaporanPembelianController extends Controller
     {
         //
     }
+
+
+    /**
+     * controller ini untuk mencari laporan
+     */
+
+    public function cari(Request $request)
+    {
+
+        $query = "SELECT * FROM pembelian";
+
+        if ($request->tanggal_after == null) {
+            $tanggal_sebelum = $request->tanggal_before;
+            $tanggal_sesudah = $request->tanggal_before;
+            
+            $query .= "tanggal = '$tanggal_sebelum'";
+        } else {
+            $tanggal_sebelum = $request->tanggal_before;
+            $tanggal_sesudah = $request->tanggal_after;
+
+            $query .= "WHERE tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'";
+        }
+
+        if ($request->tanggal_jatuh_tempo_after == null) {
+            $tanggal_sebelum_japo = $request->tanggal_jatuh_tempo_before;
+            $tanggal_sesudah_japo = $request->tanggal_jatuh_tempo_before;
+
+            $query .= "tanggal = '$tanggal_sebelum_japo'";
+            
+        } else {
+            $tanggal_sebelum_japo = $request->tanggal_jatuh_tempo_before;
+            $tanggal_sesudah_japo = $request->tanggal_jatuh_tempo_after;
+
+            $query .= "tanggal BETWEEN '$tanggal_sebelum_japo'";
+        }
+
+        $nama_pembeli = $request->nama_pembeli;
+        $nama_pembeli = implode(', ', $nama_pembeli);
+
+        $pembayaran = $request->pembayaran;
+
+        
+        
+        dd($query);
+
+        return view('admin.barang.laporan-barang.pembelian.result');   
+
+    }
 }

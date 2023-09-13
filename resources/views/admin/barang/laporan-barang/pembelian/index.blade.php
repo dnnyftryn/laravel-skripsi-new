@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="" method="get">
+                        <form action="{{route('laporan.cari')}}" method="GET">
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Tanggal</label>
                                 <div class="col-sm-2">
@@ -38,7 +38,7 @@
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Pembeli</label>
                                 <div class="col-sm-10">
-                                    <select class="select2" multiple="multiple" data-placeholder="Pilih Nama Pembeli" style="width: 100%;">
+                                    <select class="select2" multiple="multiple" name="nama_pembeli[]"  data-placeholder="Pilih Nama Pembeli" style="width: 100%;">
                                         @foreach ($nama_pembeli as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_member }}</option>                                        
                                         @endforeach
@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Pembayaran</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" id="pembayaran">
                                     <select class="form-control">
                                       <option value="lunas">Lunas</option>
                                       <option value="kredit">Kredit</option>

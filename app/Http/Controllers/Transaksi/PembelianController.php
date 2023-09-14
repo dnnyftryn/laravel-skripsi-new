@@ -25,9 +25,13 @@ class PembelianController extends Controller
             ->where('user_id', auth()->user()->id)
             ->where('status', 'pembelian')
             ->sum('total');
+        
+        // $total_bayar = number_format($total_bayar, 2);
+        // dd($total_bayar);
 
         $supplier = \DB::table('supplier')
             ->get();
+        
         
         return view('admin.transaksi.pembelian.index', compact('nomor_faktur', 'keranjang', 'total_bayar', 'supplier'));
     }

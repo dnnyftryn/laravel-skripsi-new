@@ -17,7 +17,19 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="" method="get">
+
+                        {{-- menampilkan error validasi --}}
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
+                        <form action="{{route('laporan_penjualan.cari')}}" method="get">
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Tanggal</label>
                                 <div class="col-sm-2">

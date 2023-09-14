@@ -21,7 +21,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Data Keranjang</h3>
+          <h3 class="card-title">Data Keranjang </h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0" style="height: 300px;">
@@ -45,7 +45,7 @@
                 <td>{{ $item->jumlah }}</td>
                 <td>{{ $item->satuan }}</td>
                 <td>{{ $item->discount }}</td>
-                <td>{{ $item->total }}</td>
+                <td>Rp. @convert($item->total)</td>
                 <td>
                   <form action="{{ route('keranjang.destroy', $item->id) }}" method="POST">
                     @csrf
@@ -91,15 +91,23 @@
           </div>
           <div class="form-group col-2">
             <label for="Total">Total</label>
-            <input type="text" class="form-control" value="{{$total_bayar}}" id="total" name="total" @readonly(true)>
+            <input type="text" class="form-control" value="Rp. @convert($total_bayar)" id="total" name="total" @readonly(true)>
+          </div>
+          <div class="form-group col-2" hidden>
+            <label for="Total">Total</label>
+            <input type="text" class="form-control" value="{{$total_bayar}}" id="total_new" name="total_new" @readonly(true)>
           </div>
           <div class="form-group col-2">
             <label for="Bayar">Bayar</label>
-            <input type="text" class="form-control" id="bayar" name="bayar">
+            <input type="text" class="form-control bayar" id="bayar" name="bayar">
           </div>
           <div class="form-group col-2">
             <label for="Kembali">Kembali</label>
             <input type="text" class="form-control" id="kembali" name="kembali" @readonly(true)>
+          </div>
+          <div class="form-group col-2" hidden>
+            <label for="Kembali">Kembali</label>
+            <input type="text" class="form-control" id="kembali_new" name="kembali_new" @readonly(true)>
           </div>
         </div>
         <div class="row">

@@ -92,7 +92,10 @@ class LaporanPembelianController extends Controller
 
     public function cari(Request $request)
     {
-        $query = "SELECT * FROM pembelian WHERE ";
+        $this->validate($request, [
+            'tanggal_before' => 'required'
+        ]);
+        $str = "SELECT * FROM pembelian WHERE ";
 
         $tanggal_sebelum = $request->tanggal_before;
         $tanggal_sesudah = $request->tanggal_after;
@@ -105,41 +108,30 @@ class LaporanPembelianController extends Controller
 
         switch ($tanggal_sebelum) {
             case null;
-                $query .= "";
+                $str .= "";
                 break;
 
             default:
-                $query .= "tanggal = '$tanggal_sebelum'";
-        }
-
-        switch ($tanggal_sesudah) {
-            case null;
-                $query .= "";
-                break;
-
-            default:
-                $query .= "tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'";
+                if ($tanggal_sesudah != null) {
+                    $str .= "tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'";
+                } else {
+                    $str .= "tanggal = '$tanggal_sebelum'";
+                }
         }
 
         switch ($nama_pembeli) {
             case null;
-                $query .= "";
+                $str .= "";
                 break;
 
             default:
-                foreach ($nama_pembeli as $item) {
-                    $nama_pembeli_new = "'" . $item . "'";
-                }
+                $nama_pembeli = implode("', '", $nama_pembeli);
 
-                // $query .= "AND nama_pembeli IN ($nama_pembeli_new)";
+                $str .= "AND nama_penjual IN ('$nama_pembeli')";
         }
 
-
-        foreach ($nama_pembeli as $item) {
-            $nama_pembeli_new = "'" . $item . "'";
-        }
-
-        dd($item);
+        $query = \DB::select(\DB::raw($str));
+        dd($str);
 
         return view('admin.barang.laporan-barang.pembelian.result');
 

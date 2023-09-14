@@ -101,7 +101,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/print-faktur-pembelian/{id}', [DashboardAdminController::class, 'print_faktur_pembelian'])->name('print_faktur_pembelian');
 
     Route::get('/kodebarang', [StockOpnameController::class, 'getKodeBarang'])->name('kodebarang.index');
-    Route::get('/laporan-pembelian-cari', [LaporanPembelianController::class, 'cari'])->name('laporan.cari');
+    Route::get('/laporan-pembelian-cari', [LaporanPembelianController::class, 'cari'])->name('laporan_pembelian.cari');
+    Route::get('/laporan-penjualan-cari', [LaporanPenjualanController::class, 'cari'])->name('laporan_penjualan.cari');
 
     Route::post('/keranjang/pembelian/store', [KeranjangController::class, 'store_pembelian'])->name('keranjang_pembelian.store');
     Route::post('/keranjang/penjualan/store', [KeranjangController::class, 'store_penjualan'])->name('keranjang_penjualan.store');
@@ -128,11 +129,11 @@ All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
   
-    Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+    Route::get('/manager', [HomeController::class, 'managerHome'])->name('manager.home');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'user-access:warehouse'])->group(function () {
   
-    Route::get('/warehouse/home', [HomeController::class, 'warehouseHome'])->name('warehouse.home');
+    Route::get('/warehouse', [HomeController::class, 'warehouseHome'])->name('warehouse.home');
 });

@@ -17,15 +17,24 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{route('laporan.cari')}}" method="GET">
+                        {{-- menampilkan error validasi --}}
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
+                        <form action="{{route('laporan_pembelian.cari')}}" method="GET">
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Tanggal</label>
                                 <div class="col-sm-2">
                                     <select class="form-control" id="type">
                                       <option value="between">Antara</option>
                                       <option value="equals">Sama Dengan</option>
-                                      <option value="less_than">Kurang Dari</option>
-                                      <option value="more_than">Lebih Dari</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-4" id="tanggal_before">
@@ -60,8 +69,6 @@
                                     <select class="form-control" id="type2">
                                       <option value="between">Antara</option>
                                       <option value="equals">Sama Dengan</option>
-                                      <option value="less_than">Kurang Dari</option>
-                                      <option value="more_than">Lebih Dari</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-4">

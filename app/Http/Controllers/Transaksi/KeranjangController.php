@@ -13,10 +13,10 @@ class KeranjangController extends Controller
         $kode_barang = $request->kode_barang;
         $nama_barang = $request->nama_barang;
         $jumlah = $request->jumlah;
-        $harga = $request->harga;
+        $harga = $request->harga_new;
         $satuan = $request->satuan;
         $discount = $request->discount;
-        $total = $request->total_keranjang;
+        $total = $request->total_keranjang_new;
 
         $query = \DB::table('keranjang')
             ->insert([

@@ -25,10 +25,15 @@
             <div class="form-group col-2">
                 <label for="harga">Harga</label>
                 <div class="input-field">
-                    <input type="text" class="form-control" placeholder="Harga Barang"  id="harga" name="harga">
+                    <input type="text" class="form-control harga" placeholder="Harga Barang"  id="harga" name="harga">
                 </div>
             </div>
-            
+            <div class="form-group col-2" hidden>
+                <label for="harga">Harga hide</label>
+                <div class="input-field">
+                    <input type="text" class="form-control harga_new" placeholder="Harga Barang"  id="harga_new" name="harga_new">
+                </div>
+            </div>
             <div class="form-group col-1">
                 <label for="satuan">Satuan</label>
                 <input type="text" class="form-control" placeholder="Satuan Barang" id="satuan" name="satuan">
@@ -43,6 +48,10 @@
             <div class="form-group col-2">
                 <label for="total">Total</label>
                 <input type="text" class="form-control" placeholder="Total Barang"  id="total_keranjang" name="total_keranjang" @readonly(true)>
+            </div>
+            <div class="form-group col-2" hidden>
+                <label for="total">Total hide</label>
+                <input type="text" class="form-control" placeholder="Total Barang"  id="total_keranjang_new" name="total_keranjang_new" @readonly(true)>
             </div>
             <div class="form-group col-2">
                 <input type="text" class="form-control" placeholder="Total Barang" value="pembelian"  id="state" name="state" hidden>

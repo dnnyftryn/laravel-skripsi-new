@@ -1,8 +1,8 @@
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-      <a href="../../index3.html" class="navbar-brand">
-        <img src="{{asset('storage/uutbeef.png')}}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
+      <a href="" class="navbar-brand">
+        <img src="{{asset('storage/uutbeef_1.jpg')}}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
         {{-- <span class="brand-text font-weight-light">Uutbeef</span> --}}
       </a>
 

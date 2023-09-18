@@ -1,5 +1,9 @@
 @extends('layouts.template.app-topnav')
 
+@section('style')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
+@endsection
+
 @section('context')
     Dashboard
 @endsection
@@ -7,7 +11,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            {{-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100" src="{{asset('storage/uutbeef_1.jpg')}}" alt="First slide">
@@ -19,6 +23,38 @@
                         <img class="d-block w-100" src="{{asset('storage/uutbeef_1.jpg')}}" alt="Third slide">
                     </div>
                 </div>
+            </div> --}}
+
+            <div class="banner"> <img src="{{asset('storage/image_2.png')}}">
+              <div class="container">
+                <div class="home_slider_content"  data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+                  <div class="home_slider_title text-white bold">
+                    <h2>
+                      <b>
+                        UUT BEEF
+                      </b>
+                    </h3>
+                  </div>
+                  <div class="home_slider_subtitle text-white">
+                    <h4>
+                      Tersedia berbagai macam daging segar
+                    </h3>
+                  </div>
+                  <div class="jam_operasional_toko text-white">
+                      <h5>
+                        Jam operasional toko : 09:00 - 19:00
+                      </h5>
+                  </div>
+                  <div class="jam_operasional_web text-white">
+                    <h5>
+                      Jam operasional web : 09:00 - 15:00
+                    </h5>
+                </div>
+                <div class="button">
+                  <button type="button" class="btn btn-light text-black"><b>Pesan Sekarang</b></button>
+                </div>
+                </div>
+              </div>
             </div>
 
             <div class="card mt-4">

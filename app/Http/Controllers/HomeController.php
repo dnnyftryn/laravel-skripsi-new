@@ -34,7 +34,7 @@ class HomeController extends Controller
      */
     public function userHome()
     {
-        return view('user.userHome');
+        return view('user.beranda.index');
     }
   
     /**

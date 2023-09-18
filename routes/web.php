@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\UserController;
 
 use App\Http\Controllers\Barang\BarangController;
 use App\Http\Controllers\Barang\StokBarangController;
@@ -78,7 +79,7 @@ Route::get('getSupplier/{id}', function ($id) {
 });
 
 
-
+Route::get('/produk', [UserController::class, 'produk'])->name('produk.index');
 
 /*------------------------------------------
 --------------------------------------------
@@ -128,12 +129,12 @@ All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
-  
+
     Route::get('/manager', [HomeController::class, 'managerHome'])->name('manager.home');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'user-access:warehouse'])->group(function () {
-  
+
     Route::get('/warehouse', [HomeController::class, 'warehouseHome'])->name('warehouse.home');
 });

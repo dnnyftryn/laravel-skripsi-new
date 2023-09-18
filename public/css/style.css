@@ -1,0 +1,79 @@
+.banner{position:relative}
+.banner img{width:100%}
+
+.banner 
+.container 
+.home_slider_title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    margin: 10px;
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+}
+
+.banner 
+.container 
+.home_slider_subtitle {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    vertical-align: top;
+    text-align: center;
+    display: flex;
+    margin: 10px;
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+}
+
+.banner 
+.container 
+.jam_operasional_toko {
+    position: absolute;
+    top: 0;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    vertical-align: top;
+    text-align: center;
+    display: flex;
+    margin: 0 auto; /* Center horizontally */
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+}
+
+.banner 
+.container 
+.jam_operasional_web {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    vertical-align: top;
+    text-align: center;
+    display: flex;
+    margin: 0 auto; /* Center horizontally */
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+}
+
+.banner
+.container
+.button {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    vertical-align: top;
+    text-align: center;
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+}
+

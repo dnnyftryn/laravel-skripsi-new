@@ -2,7 +2,7 @@
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
       <a href="" class="navbar-brand">
-        <img src="{{asset('storage/uutbeef_1.jpg')}}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
+        <img src="{{asset('icon/uutbeef_1.jpg')}}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
         {{-- <span class="brand-text font-weight-light">Uutbeef</span> --}}
       </a>
 
@@ -43,14 +43,14 @@
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }}
             </a>
-    
+
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
-    
+
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>

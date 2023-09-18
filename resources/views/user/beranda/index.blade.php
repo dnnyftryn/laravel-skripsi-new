@@ -25,7 +25,7 @@
                 </div>
             </div> --}}
 
-            <div class="banner"> <img src="{{asset('storage/image_2.png')}}">
+            <div class="banner"> <img src="{{asset('icon/image_2.png')}}">
               <div class="container">
                 <div class="home_slider_content"  data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
                   <div class="home_slider_title text-white bold">

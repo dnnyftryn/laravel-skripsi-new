@@ -49,13 +49,21 @@ class PenjualanController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'nomor_faktur' => 'required',
+            'nama_supplier' => 'required',
+            'pembayaran' => 'required',
+            'tanggal' => 'required',
+            'alamat' => 'required'
+        ]);
+        
         $penjualan = new Penjualan;
         $penjualan->invoice_id = $request->nomor_faktur;
         $penjualan->nama_pembeli = $request->id_member;
         $penjualan->pembayaran = $request->pembayaran;
         $penjualan->tanggal = $request->tanggal;
         $penjualan->alamat = $request->alamat;
-        
+
         if ($request->pembayaran == 'kredit') {
             $penjualan->jatuh_tempo = $request->hari;
 
@@ -73,7 +81,7 @@ class PenjualanController extends Controller
             ->where('user_id', auth()->user()->id)
             ->where('status', 'penjualan')
             ->get();
-        
+
         foreach ($keranjang as $item) {
             $detail_penjualan = \DB::table('penjualan_detail')
                 ->insert([
@@ -86,11 +94,11 @@ class PenjualanController extends Controller
                     'discount' => $item->discount,
                     'total' => $item->total,
                 ]);
-            
+
             $barang = \DB::table('barang')
                 ->where('kode_barang', $item->kode_barang)
                 ->first();
-            
+
             $stok = $barang->jumlah - $item->jumlah;
 
             $update_stok = \DB::table('barang')
@@ -104,7 +112,7 @@ class PenjualanController extends Controller
             ->where('user_id', auth()->user()->id)
             ->where('status', 'penjualan')
             ->delete();
-        
+
         return redirect()->route('penjualan.index')->with('success', 'Transaksi penjualan berhasil disimpan');
     }
 

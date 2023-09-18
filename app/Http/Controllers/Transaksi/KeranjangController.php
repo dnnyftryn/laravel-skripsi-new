@@ -30,7 +30,7 @@ class KeranjangController extends Controller
                 'total' => $total,
                 'status' => 'pembelian'
             ]);
-    
+
         if ($query) {
             return redirect()->back()->with('success', 'Barang berhasil ditambahkan ke keranjang');
         } else {
@@ -47,7 +47,7 @@ class KeranjangController extends Controller
         $harga = $request->harga;
         $satuan = $request->satuan;
         $discount = $request->discount;
-        $total = $request->total_keranjang;
+        $total = $request->total_keranjang_new;
 
         $query = \DB::table('keranjang')
             ->insert([
@@ -61,7 +61,7 @@ class KeranjangController extends Controller
                 'total' => $total,
                 'status' => 'penjualan'
             ]);
-    
+
         if ($query) {
             return redirect()->back()->with('success', 'Barang berhasil ditambahkan ke keranjang');
         } else {

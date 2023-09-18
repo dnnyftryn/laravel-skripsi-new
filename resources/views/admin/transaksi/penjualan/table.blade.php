@@ -44,7 +44,7 @@
                   <td>{{ $keranjangs->jumlah }}</td>
                   <td>{{ $keranjangs->satuan }}</td>
                   <td>{{ $keranjangs->discount }}</td>
-                  <td>{{ $keranjangs->total }}</td>
+                  <td> Rp. @convert($keranjangs->total)</td>
                   <td>
                     <form action="{{ route('keranjang.destroy', $keranjangs->id) }}" method="POST">
                       @csrf
@@ -66,6 +66,19 @@
     @csrf
     <div class="card">
       <div class="card-body">
+
+
+        {{-- menampilkan error validasi --}}
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <div class="row">
           <div class="form-group col-3">
             <label for="nomor_faktur">Nomor Faktur</label>
@@ -73,25 +86,33 @@
           </div>
           <div class="form-group col-3">
             <label for="tanggal">Tanggal</label>
-            <input type="datetime-local" class="form-control" placeholder="Tanggal"  id="tanggal" name="tanggal">  
+            <input type="datetime-local" class="form-control" placeholder="Tanggal"  id="tanggal" name="tanggal">
           </div>
           <div class="form-group col-2">
             <label for="Total">Total</label>
-            <input type="text" class="form-control" value="{{ $total }}" id="total" name="total" @readonly(true)>
+            <input type="text" class="form-control" value="Rp. @convert($total)" id="total" name="total" @readonly(true)>
+          </div>
+          <div class="form-group col-2" hidden>
+            <label for="Total">Total</label>
+            <input type="text" class="form-control" value="{{ $total }}" id="total_new" name="total_new" @readonly(true)>
           </div>
           <div class="form-group col-2">
             <label for="Bayar">Bayar</label>
-            <input type="text" class="form-control" id="bayar" name="bayar">
+            <input type="text" class="form-control bayar" id="bayar" name="bayar">
           </div>
           <div class="form-group col-2">
             <label for="Kembali">Kembali</label>
             <input type="text" class="form-control" id="kembali" name="kembali" @readonly(true)>
           </div>
+          <div class="form-group col-2" hidden>
+            <label for="Kembali">Kembali</label>
+            <input type="text" class="form-control" id="kembali_new" name="kembali_new" @readonly(true)>
+          </div>
         </div>
         <div class="row">
           {{-- <div class="form-group col-3">
             <label for="member">Member</label>
-            <input type="text" class="form-control"  id="member" name="member">  
+            <input type="text" class="form-control"  id="member" name="member">
           </div> --}}
           <div class="form-group col-3">
             <label>Member</label>
@@ -103,7 +124,7 @@
           </div>
           <div class="form-group col-3">
             <label for="alamat">alamat</label>
-            <textarea class="form-control" rows="3" placeholder="Masukkan alamat" name="alamat" id="alamat"></textarea>  
+            <textarea class="form-control" rows="3" placeholder="Masukkan alamat" name="alamat" id="alamat"></textarea>
           </div>
           <div class="form-group col-3">
             <label>Pembayaran</label>
@@ -114,7 +135,7 @@
           </div>
           <div class="form-group col-3">
             <label for="hari">Hari</label>
-            <input type="text" class="form-control"  id="hari" name="hari">  
+            <input type="text" class="form-control"  id="hari" name="hari">
           </div>
         </div>
         <div class="row">

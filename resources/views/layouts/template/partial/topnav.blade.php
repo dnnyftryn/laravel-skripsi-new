@@ -1,10 +1,10 @@
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-      <a href="" class="navbar-brand">
+      {{-- <a href="" class="navbar-brand">
         <img src="{{asset('icon/uutbeef_1.jpg')}}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
-        {{-- <span class="brand-text font-weight-light">Uutbeef</span> --}}
-      </a>
+        <span class="brand-text font-weight-light">Uutbeef</span>
+      </a> --}}
 
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,8 +35,9 @@
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
 
         <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-              <i class="fas fa-expand-arrows-alt"></i>
+            <a href="#" class="nav-link">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span class="badge badge-danger navbar-badge">3</span>
             </a>
           </li>
           <li class="nav-item dropdown">

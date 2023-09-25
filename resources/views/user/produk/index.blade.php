@@ -1,5 +1,5 @@
 @extends('layouts.template.app-topnav')
 
 @section('context')
-    Dashboard
+    Produk Daging
 @endsection

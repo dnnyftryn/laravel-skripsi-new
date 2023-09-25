@@ -23,6 +23,7 @@ class BarangSeeder extends Seeder
             'kode_barang' => $faker->numberBetween(1000, 10000), // 'App\Models\Barang
             'nama_barang' => $faker->name,
             'nama_kategori' => $faker->name, // 'App\Models\Kategori
+            'deskripsi' => $faker->text(),
             'jumlah' => $faker->numberBetween(1, 100),
             'harga_beli' => $faker->numberBetween(1000, 10000),
             'harga_jual' => $faker->numberBetween(1000, 10000),

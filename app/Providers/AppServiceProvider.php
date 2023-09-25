@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Money\Money;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('convert', function ($money) {
             return "<?php echo number_format($money, 2); ?>";
         });
+        Paginator::useBootstrap();
     }
 }

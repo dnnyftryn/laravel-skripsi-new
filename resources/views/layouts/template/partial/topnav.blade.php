@@ -23,7 +23,7 @@
             <a href="#" class="nav-link">Tentang Kami</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Produk</a>
+            <a href="{{route('produk.index')}}" class="nav-link">Produk</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Kontak Kami</a>

@@ -16,10 +16,10 @@ class KategoriSeeder extends Seeder
     public function run()
     {
         $kategori = [
-            ['nama_kategori' => 'Sirloin', 'path' => 'icon/ka'],
-            ['nama_kategori' => 'Rib'],
-            ['nama_kategori' => 'Chuck'],
-            ['nama_kategori' => 'Tenderloin']
+            ['nama_kategori' => 'Sirloin', 'path' => 'icon/kategori/daging-sapi.jpg'],
+            ['nama_kategori' => 'Rib', 'path' => 'icon/kategori/rib-sapi.jpg'],
+            ['nama_kategori' => 'Chuck', 'path' => 'icon/kategori/chuck-sapi.jpg'],
+            ['nama_kategori' => 'Tenderloin', 'path' => 'icon/kategori/tenderloin-sapi.jpg']
         ];
 
         DB::table('kategori')->insert($kategori);

@@ -79,8 +79,6 @@ Route::get('getSupplier/{id}', function ($id) {
 });
 
 
-Route::get('/produk', [UserController::class, 'produk'])->name('produk.index');
-
 /*------------------------------------------
 --------------------------------------------
 All Normal Users Routes List
@@ -88,6 +86,8 @@ All Normal Users Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'userHome'])->name('user.home');
+    Route::get('/produk', [UserController::class, 'produk'])->name('produk.index');
+    Route::get('/produk/{kode_barang}', [UserController::class, 'show'])->name('produk.show');
 });
 
 /*------------------------------------------

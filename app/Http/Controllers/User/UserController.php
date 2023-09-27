@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function produk()
     {
-        $data = \DB::table('barang')->paginate(5);
+        $data = \DB::table('barang')->paginate(6);
         return view('user.produk.index', compact('data'));
     }
 

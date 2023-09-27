@@ -11,7 +11,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12 col-sm-6">
-              <h3 class="d-inline-block d-sm-none">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
+              <h3 class="d-inline-block d-sm-none">LOWA Mens Renegade GTX Mid Hiking Boots Review</h3>
               <div class="col-12">
                 <img src="../../dist/img/prod-1.jpg" class="product-image" alt="Product Image">
               </div>

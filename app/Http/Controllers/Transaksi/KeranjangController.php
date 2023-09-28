@@ -9,14 +9,14 @@ class KeranjangController extends Controller
 {
     public function store_pembelian(Request $request)
     {
-        $user_id = auth()->user()->id;
-        $kode_barang = $request->kode_barang;
-        $nama_barang = $request->nama_barang;
-        $jumlah = $request->jumlah;
-        $harga = $request->harga_new;
-        $satuan = $request->satuan;
-        $discount = $request->discount;
-        $total = $request->total_keranjang_new;
+        $user_id        = auth()->user()->id;
+        $kode_barang    = $request->kode_barang;
+        $nama_barang    = $request->nama_barang;
+        $jumlah         = $request->jumlah;
+        $harga          = $request->harga_new;
+        $satuan         = $request->satuan;
+        $discount       = $request->discount;
+        $total          = $request->total_keranjang_new;
 
         $query = \DB::table('keranjang')
             ->insert([

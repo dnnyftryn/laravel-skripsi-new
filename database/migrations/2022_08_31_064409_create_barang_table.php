@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('jumlah')->nullable()->default(0);
             $table->string('harga_jual')->nullable();
             $table->string('harga_beli')->nullable();
+            $table->string('rating')->nullable();
             $table->string('satuan')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

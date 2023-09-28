@@ -1,10 +1,10 @@
 <?php
-  
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-  
+
 class HomeController extends Controller
 {
     /**
@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-  
+
     /**
      * Show the application dashboard.
      *
@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
-    } 
+    }
 
     /**
      * Show the application dashboard.
@@ -34,9 +34,13 @@ class HomeController extends Controller
      */
     public function userHome()
     {
-        return view('user.beranda.index');
+        $count = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'keranjang_user')
+            ->count();
+        return view('user.beranda.index', compact('count'));
     }
-  
+
     /**
      * Show the application dashboard.
      *
@@ -47,7 +51,7 @@ class HomeController extends Controller
         $users = User::latest()->paginate(9);
         return view('admin.dashboard', compact('users'));
     }
-  
+
     /**
      * Show the application dashboard.
      *

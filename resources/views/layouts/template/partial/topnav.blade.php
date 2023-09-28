@@ -14,19 +14,13 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="index3.html" class="nav-link">Beranda</a>
+            <a href="{{route('user.home')}}" class="nav-link">Beranda</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Cara Pemesanan</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Tentang Kami</a>
-          </li>
-          <li class="nav-item">
             <a href="{{route('produk.index')}}" class="nav-link">Produk</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Kontak Kami</a>
           </li>
         </ul>
       </div>
@@ -35,9 +29,11 @@
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('keranjang.show')}}" class="nav-link">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span class="badge badge-danger navbar-badge">3</span>
+                <span class="badge badge-danger navbar-badge">
+                    {{$count}}
+                </span>
             </a>
           </li>
           <li class="nav-item dropdown">

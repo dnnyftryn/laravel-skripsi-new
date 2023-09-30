@@ -17,7 +17,7 @@
             <a href="{{route('user.home')}}" class="nav-link">Beranda</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Cara Pemesanan</a>
+            <a href="{{route('cara_pemesanan.index')}}" class="nav-link">Cara Pemesanan</a>
           </li>
           <li class="nav-item">
             <a href="{{route('produk.index')}}" class="nav-link">Produk</a>

@@ -6,14 +6,33 @@
 
 @section('content')
     <div class="container">
+        @if ($count == '0')
+        <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <table class="table table-stripped">
+                <tbody bgcolor="#EDEDED">
+                    <tr>
+                        <th style="width: 10px">
+                            <i class="far fa-calendar-alt"></i>
+                        </th>
+                        <th align="right">
+                            Keranjang Anda saat ini kosong.
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        @else
         <div class="card">
             <!-- /.card-header -->
             <div class="card-body p-0">
                 <table class="table table-stripped">
                 <thead bgcolor="#EDEDED">
                     <tr>
-                        <th style="width: 10px"></th>
-                        <th>Produk</th>
+                        <th style="width: 10px" align="center"></th>
+                        <th align="center">Produk</th>
                         <th style="width: 150px">Harga</th>
                         <th style="width: 150px">Jumlah</th>
                         <th style="width: 150px">Subtotal</th>
@@ -29,16 +48,29 @@
                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button>
                               </form>
                         </td>
+                        {{-- <input type="text" class="form-control" placeholder="Nama Barang"  id="nama_barang" name="nama_barang">
+                        {{ $item->jumlah }}
+                        --}}
                         <td>{{ $item->nama_barang }}</td>
                         <td>{{ $item->harga }}</td>
-                        <td style="width: 10px">{{ $item->satuan }}</td>
+                        <td style="width: 10px">
+                            <input type="text" class="form-control" placeholder="Jumlah Barang"  id="jumlah" name="jumlah" value="{{ $item->jumlah }}">
+                        </td>
                         <td>Rp. @convert($item->total)</td>
                       </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td coolspan="3">
+                            <button type="button" class="btn btn-block btn-default">Perbarui</button>
+                        </td>
+                    </tr>
+                </tfoot>
                 </table>
             </div>
             <!-- /.card-body -->
         </div>
+        @endif
     </div>
 @endsection

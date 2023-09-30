@@ -75,6 +75,17 @@ class UserController extends Controller
             ->where('user_id', auth()->user()->id)
             ->where('status', 'keranjang_user')
             ->count();
+
         return view('user.produk.keranjang.index', compact('data', 'count'));
+    }
+
+    public function cara_pemesanan()
+    {
+        $count = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'keranjang_user')
+            ->count();
+
+        return view('user.cara-pemesanan.index', compact('count'));
     }
 }

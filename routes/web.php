@@ -89,6 +89,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/produk', [UserController::class, 'produk'])->name('produk.index');
     Route::get('/produk/{kode_barang}', [UserController::class, 'show'])->name('produk.show');
 
+    Route::get('/cara-pemesanan', [UserController::class, 'cara_pemesanan'])->name('cara_pemesanan.index');
+
     Route::post('/user/keranjang/{kode_barang}', [UserController::class, 'keranjang'])->name('keranjang.index');
     Route::get('/user/keranjang', [UserController::class, 'show_keranjang'])->name('keranjang.show');
     Route::delete('/user/keranjang/{id}', [KeranjangController::class, 'destroy'])->name('keranjang_user.destroy');

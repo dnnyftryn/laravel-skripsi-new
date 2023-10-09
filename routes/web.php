@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\DetailController;
 
 use App\Http\Controllers\Barang\BarangController;
 use App\Http\Controllers\Barang\StokBarangController;
@@ -88,12 +90,12 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'userHome'])->name('user.home');
     Route::get('/produk', [UserController::class, 'produk'])->name('produk.index');
     Route::get('/produk/{kode_barang}', [UserController::class, 'show'])->name('produk.show');
-
     Route::get('/cara-pemesanan', [UserController::class, 'cara_pemesanan'])->name('cara_pemesanan.index');
-
     Route::post('/user/keranjang/{kode_barang}', [UserController::class, 'keranjang'])->name('keranjang.index');
     Route::get('/user/keranjang', [UserController::class, 'show_keranjang'])->name('keranjang.show');
     Route::delete('/user/keranjang/{id}', [KeranjangController::class, 'destroy'])->name('keranjang_user.destroy');
+
+    Route::get('/detail-produk/{kode_barang}', [DetailController::class, 'show'])->name('detail-produk.index');
 });
 
 /*------------------------------------------

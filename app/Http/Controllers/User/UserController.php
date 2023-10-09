@@ -76,7 +76,12 @@ class UserController extends Controller
             ->where('status', 'keranjang_user')
             ->count();
 
-        return view('user.produk.keranjang.index', compact('data', 'count'));
+        $sub_total = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'keranjang_user')
+            ->sum('total');
+
+        return view('user.produk.keranjang.index', compact('data', 'count', 'sub_total'));
     }
 
     public function cara_pemesanan()

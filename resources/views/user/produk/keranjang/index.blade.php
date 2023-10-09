@@ -1,7 +1,7 @@
 @extends('layouts.template.app-topnav')
 
 @section('context')
-    Produk Daging
+    Keranjang Produk
 @endsection
 
 @section('content')
@@ -54,7 +54,8 @@
                         <td>{{ $item->nama_barang }}</td>
                         <td>{{ $item->harga }}</td>
                         <td style="width: 10px">
-                            <input type="text" class="form-control" placeholder="Jumlah Barang"  id="jumlah" name="jumlah" value="{{ $item->jumlah }}">
+                            {{-- <input type="text" class="form-control" placeholder="Jumlah Barang"  id="jumlah" name="jumlah" value="{{ $item->jumlah }}"> --}}
+                            <input type="number" id="typeNumber" class="form-control typeNumber" name="typeNumber" value="{{ $item->jumlah }}" />
                         </td>
                         <td>Rp. @convert($item->total)</td>
                       </tr>
@@ -72,5 +73,41 @@
             <!-- /.card-body -->
         </div>
         @endif
+
+        <div class="card col-6">
+            <div class="card-header">
+                <h3 class="card-title">Total Keranjang Keranjang</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+            <table class="table table-sm">
+                <tbody>
+                    <tr>
+                        <td>
+                            Subtotal
+                        </td>
+                        <td>
+                            Rp. @convert($sub_total)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Total</b>
+                        </td>
+                        <td>
+                            <b>Rp. @convert($sub_total)</b>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <td>
+                        <button type="button" class="btn btn-block btn-primary">Lanjutkan Checkout</button>
+                    </td>
+                </tfoot>
+            </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+
     </div>
 @endsection

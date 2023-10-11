@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Barang;
+use Twilio\Rest\Client;
 
 class UserController extends Controller
 {
@@ -92,5 +93,75 @@ class UserController extends Controller
             ->count();
 
         return view('user.cara-pemesanan.index', compact('count'));
+    }
+
+    public function checkout()
+    {
+        $data = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'keranjang_user')
+            ->get();
+
+        $count = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'keranjang_user')
+            ->count();
+
+        $sub_total = \DB::table('keranjang')
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'keranjang_user')
+            ->sum('total');
+        return view('user.produk.keranjang.checkout', compact('data', 'count', 'sub_total'));
+    }
+
+    public function send_wa(Request $request)
+    {
+        $nomorWhatsAppTujuan = "6282119232351"; // Ganti dengan nomor WhatsApp tujuan yang sesuai
+        $pesan = $request->input('pesan'); // Ambil pesan dari formulir
+
+        // Kirim pesan menggunakan Twilio
+        $sid = config('services.twilio.sid');
+        $token = config('services.twilio.token');
+        $twilio = new Client($sid, $token);
+
+        $twilio->messages->create(
+            "whatsapp:$nomorWhatsAppTujuan",
+            [
+                "from" => "whatsapp:+1234567890", // Ganti dengan nomor WhatsApp Anda
+                "body" => $pesan,
+            ]
+        );
+
+        return redirect()->back()->with('status', 'Pesan telah berhasil dikirim');
+
+    }
+
+    public function sendWhatsApp(Request $request)
+    {
+        $nomor_whatsapp = "6282119232351";
+        
+        $nama_depan = $request->input('nama_depan');
+        $nama_belakang = $request->input('nama_belakang');
+        $nomor_member = $request->input('nomor_member');
+        $negara = $request->input('negara');
+        $jalan = $request->input('jalan');
+        $alamat = $request->input('alamat');
+        $kota = $request->input('kota');
+        $provinsi = $request->input('provinsi');
+        $kode_pos = $request->input('kode_pos');
+        $telepon = $request->input('telepon');
+        $email = $request->input('email');
+        $tanggal_ambil = $request->input('tanggal_ambil');
+        $nama_barang = $request->input('nama_barang');
+        $jumlah = $request->input('jumlah');
+        $total = $request->input('total');
+        $subtotal = $request->input('subtotal');
+
+        // $message = "Hai Admin!\nNama Depan: $nama_depan\nNama Belakang: $nama_belakang\nNo. Member: $nomor_member\nNegara/Wilayah: $negara\nAlamat: $jalan $alamat\nKota: $kota\nProvinsi: $provinsi\nKode Pos: $kode_pos\nTelepon: $telepon\nEmail: $email\nTanggal Pengambilan Pesanan: $tanggal_ambil";
+        $message = "Hai Admin!\nNama Depan: $nama_depan\nNama Belakang: $nama_belakang\nNo. Member: $nomor_member\nNegara/Wilayah: $negara\nAlamat: $jalan $alamat\nKota: $kota\nProvinsi: $provinsi\nKode Pos: $kode_pos\nTelepon: $telepon\nEmail: $email\nTanggal Pengambilan Pesanan: $tanggal_ambil\nPesanan Saya: $nama_barang $jumlah $total Subtotal: $subtotal";
+
+        $tautanWhatsApp = "https://wa.me/{$nomor_whatsapp}?text=" . urlencode($message);
+
+        return redirect($tautanWhatsApp);
     }
 }

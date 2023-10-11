@@ -101,7 +101,12 @@
                 </tbody>
                 <tfoot>
                     <td>
-                        <button type="button" class="btn btn-block btn-primary">Lanjutkan Checkout</button>
+                        <form action="{{ route('keranjang.checkout', $item->id) }}" method="POST">
+                            @csrf
+                            @method('GET')
+                        {{-- <a href="{{ route(keranjang.checkout)}}" class="btn btn-block btn-primary">Lanjutkan Checkout</a> --}}
+                        <button type="submit" class="btn btn-block btn-primary">Lanjutkan Checkout</button>
+                        </form>
                     </td>
                 </tfoot>
             </table>

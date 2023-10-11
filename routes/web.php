@@ -94,6 +94,9 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/user/keranjang/{kode_barang}', [UserController::class, 'keranjang'])->name('keranjang.index');
     Route::get('/user/keranjang', [UserController::class, 'show_keranjang'])->name('keranjang.show');
     Route::delete('/user/keranjang/{id}', [KeranjangController::class, 'destroy'])->name('keranjang_user.destroy');
+    Route::get('/user/checkout', [UserController::class, 'checkout'])->name('keranjang.checkout');
+    // Route::post('/user/checkout/send', [UserController::class, 'send_wa'])->name('send.wa');
+    Route::post('/user/checkout/send', [UserController::class, 'sendWhatsApp'])->name('send.wa');
 
     Route::get('/detail-produk/{kode_barang}', [DetailController::class, 'show'])->name('detail-produk.index');
 });

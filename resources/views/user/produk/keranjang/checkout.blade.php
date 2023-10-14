@@ -26,7 +26,6 @@
                                         <div class="form-group">
                                             <label for="nama_depan">Nama Depan</label>
                                             <input type="text" name="nama_depan" class="form-control" id="nama_depan" placeholder="Masukkan Nama Depan">
-
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -37,10 +36,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-group">
-                                        <label>Nomor Member (opsional)</label>
-                                        <input type="text" name="nomor_member" class="form-control" id="nomor_member" placeholder="Masukkan Nomor Member">
-                                    </div>
+                                    <label>Nomor Member (opsional)</label>
+                                    <input type="text" name="nomor_member" class="form-control" id="nomor_member" placeholder="Masukkan Nomor Member">
                                 </div>
                                 <div class="form-group">
                                     <label for="negara">Negara/ Wilayah</label>
@@ -49,43 +46,30 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-group">
-                                        <label>Alamat/ Jalan</label>
-                                        <input type="text" name="jalan" class="form-control" id="jalan" placeholder="Nomor Rumah dan Nama Jalan">
-                                        <br>
-                                        <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Apartemen, Suit, unit, dll (opsional)">
-
-                                    </div>
+                                    <label>Alamat/ Jalan</label>
+                                    <input type="text" name="jalan" class="form-control" id="jalan" placeholder="Nomor Rumah dan Nama Jalan">
+                                    <br>
+                                    <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Apartemen, Suit, unit, dll (opsional)">
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-group">
-                                        <label>Kota</label>
-                                        <input type="text" name="kota" class="form-control" id="kota" placeholder="Masukkan Nama Kota">
-                                    </div>
+                                    <label>Kota</label>
+                                    <input type="text" name="kota" class="form-control" id="kota" placeholder="Masukkan Nama Kota">
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-group">
-                                        <label>Provinsi</label>
-                                        <input type="text" name="provinsi" class="form-control" id="provinsi" placeholder="Masukkan Nama Provinsi">
-                                    </div>
+                                    <label>Provinsi</label>
+                                    <input type="text" name="provinsi" class="form-control" id="provinsi" placeholder="Masukkan Nama Provinsi">
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-group">
-                                        <label>Kode Pos</label>
-                                        <input type="text" name="kode_pos" class="form-control" id="kode_pos" placeholder="Masukkan Kode Pos">
-                                    </div>
+                                    <label>Kode Pos</label>
+                                    <input type="text" name="kode_pos" class="form-control" id="kode_pos" placeholder="Masukkan Kode Pos">
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-group">
-                                        <label>Telepon</label>
-                                        <input type="text" name="Telepon" class="form-control" id="Telepon" placeholder="Masukkan Nomor Telepon">
-                                    </div>
+                                    <label>Telepon</label>
+                                    <input type="text" name="Telepon" class="form-control" id="Telepon" placeholder="Masukkan Nomor Telepon">
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-group">
-                                        <label>Alamat email</label>
-                                        <input type="text" name="email" class="form-control" id="email" placeholder="Masukkan Alamat Email">
-                                    </div>
+                                    <label>Alamat email</label>
+                                    <input type="text" name="email" class="form-control" id="email" placeholder="Masukkan Alamat Email">
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Pengambilan Pesanan</label>

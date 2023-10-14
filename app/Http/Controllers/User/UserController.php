@@ -114,30 +114,14 @@ class UserController extends Controller
         return view('user.produk.keranjang.checkout', compact('data', 'count', 'sub_total'));
     }
 
-    public function send_wa(Request $request)
-    {
-        $nomorWhatsAppTujuan = "6282119232351"; // Ganti dengan nomor WhatsApp tujuan yang sesuai
-        $pesan = $request->input('pesan'); // Ambil pesan dari formulir
-
-        // Kirim pesan menggunakan Twilio
-        $sid = config('services.twilio.sid');
-        $token = config('services.twilio.token');
-        $twilio = new Client($sid, $token);
-
-        $twilio->messages->create(
-            "whatsapp:$nomorWhatsAppTujuan",
-            [
-                "from" => "whatsapp:+1234567890", // Ganti dengan nomor WhatsApp Anda
-                "body" => $pesan,
-            ]
-        );
-
-        return redirect()->back()->with('status', 'Pesan telah berhasil dikirim');
-
-    }
-
     public function sendWhatsApp(Request $request)
     {
+        $count = \DB::table('keranjang')
+                ->where('user_id', auth()->user()->id)
+                ->where('status', 'keranjang_user')
+                ->count();
+
+
         $nomor_whatsapp = "6282119232351";
 
         $nama_depan = $request->input('nama_depan');
@@ -158,26 +142,46 @@ class UserController extends Controller
                 ->where('status', 'keranjang_user')
                 ->get();
 
+        $total_pesanan = \DB::table('keranjang')
+                ->where('user_id', auth()->user()->id)
+                ->where('status', 'keranjang_user')
+                ->sum('total');
+
+        $message = "Hai Admin!
+Nama Depan: $nama_depan
+Nama Belakang: $nama_belakang
+No. Member: $nomor_member
+Negara/Wilayah: $negara
+Alamat: $jalan $alamat
+Kota: $kota
+Provinsi: $provinsi
+Kode Pos: $kode_pos
+Telepon: $telepon
+Email: $email
+Tanggal Pengambilan Pesanan: $tanggal_ambil
+                    ";
+
+        $total = "";
+        $nama_barang = "";
+        $jumlah = "";
+
         foreach($keranjang as $object)
         {
-            $nama_barang = $object->nama_barang;
-            $jumlah = $object->jumlah;
-            $total = $object->harga;
+            $nama_barang = $object->nama_barang . " ";
+            $jumlah = $object->jumlah . " ";
+            $total = $object->harga . " ";
             $subtotal = $request->input('subtotal');
 
-            $message = "Hai Admin!\n
-
-                        Data: $nama_barang
-                        ";
-
-            // echo $message;
-            echo $nama_barang;
+            $pesanan = "
+Nama : $nama_barang - $jumlah - Subtotal : $total
+";
+            $message .= $pesanan;
         }
+        $message .= "
+Total : Rp." . $total_pesanan;
 
         $tautanWhatsApp = "https://wa.me/{$nomor_whatsapp}?text=" . urlencode($message);
 
-        // return redirect($tautanWhatsApp);
-
-        return view('user.produk.keranjang.redirect', compact('data', 'count', 'sub_total'));
+        return redirect($tautanWhatsApp);
     }
 }

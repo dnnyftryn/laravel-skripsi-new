@@ -139,7 +139,7 @@ class UserController extends Controller
     public function sendWhatsApp(Request $request)
     {
         $nomor_whatsapp = "6282119232351";
-        
+
         $nama_depan = $request->input('nama_depan');
         $nama_belakang = $request->input('nama_belakang');
         $nomor_member = $request->input('nomor_member');
@@ -152,16 +152,32 @@ class UserController extends Controller
         $telepon = $request->input('telepon');
         $email = $request->input('email');
         $tanggal_ambil = $request->input('tanggal_ambil');
-        $nama_barang = $request->input('nama_barang');
-        $jumlah = $request->input('jumlah');
-        $total = $request->input('total');
-        $subtotal = $request->input('subtotal');
 
-        // $message = "Hai Admin!\nNama Depan: $nama_depan\nNama Belakang: $nama_belakang\nNo. Member: $nomor_member\nNegara/Wilayah: $negara\nAlamat: $jalan $alamat\nKota: $kota\nProvinsi: $provinsi\nKode Pos: $kode_pos\nTelepon: $telepon\nEmail: $email\nTanggal Pengambilan Pesanan: $tanggal_ambil";
-        $message = "Hai Admin!\nNama Depan: $nama_depan\nNama Belakang: $nama_belakang\nNo. Member: $nomor_member\nNegara/Wilayah: $negara\nAlamat: $jalan $alamat\nKota: $kota\nProvinsi: $provinsi\nKode Pos: $kode_pos\nTelepon: $telepon\nEmail: $email\nTanggal Pengambilan Pesanan: $tanggal_ambil\nPesanan Saya: $nama_barang $jumlah $total Subtotal: $subtotal";
+        $keranjang = \DB::table('keranjang')
+                ->where('user_id', auth()->user()->id)
+                ->where('status', 'keranjang_user')
+                ->get();
+
+        foreach($keranjang as $object)
+        {
+            $nama_barang = $object->nama_barang;
+            $jumlah = $object->jumlah;
+            $total = $object->harga;
+            $subtotal = $request->input('subtotal');
+
+            $message = "Hai Admin!\n
+
+                        Data: $nama_barang
+                        ";
+
+            // echo $message;
+            echo $nama_barang;
+        }
 
         $tautanWhatsApp = "https://wa.me/{$nomor_whatsapp}?text=" . urlencode($message);
 
-        return redirect($tautanWhatsApp);
+        // return redirect($tautanWhatsApp);
+
+        return view('user.produk.keranjang.redirect', compact('data', 'count', 'sub_total'));
     }
 }

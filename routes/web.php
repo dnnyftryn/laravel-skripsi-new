@@ -119,6 +119,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::post('/keranjang/pembelian/store', [KeranjangController::class, 'store_pembelian'])->name('keranjang_pembelian.store');
     Route::post('/keranjang/penjualan/store', [KeranjangController::class, 'store_penjualan'])->name('keranjang_penjualan.store');
 
+
+
     Route::delete('/keranjang/{id}', [KeranjangController::class, 'destroy'])->name('keranjang.destroy');
 
     Route::resource('/barang', BarangController::class);

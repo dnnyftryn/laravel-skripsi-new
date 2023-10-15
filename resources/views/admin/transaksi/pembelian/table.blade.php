@@ -15,7 +15,7 @@
       @include('admin.transaksi.pembelian.create')
     </div>
   </div>
-  
+
   <!-- Main content -->
   <div class="row">
     <div class="col-12">
@@ -45,7 +45,7 @@
                 <td>{{ $item->jumlah }}</td>
                 <td>{{ $item->satuan }}</td>
                 <td>{{ $item->discount }}</td>
-                <td>Rp. @convert($item->total)</td>
+                <td>Rp. @convert($item->total_jual)</td>
                 <td>
                   <form action="{{ route('keranjang.destroy', $item->id) }}" method="POST">
                     @csrf
@@ -53,7 +53,7 @@
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                   </form>
                 </td>
-              </tr>   
+              </tr>
               @endforeach
             </tbody>
           </table>
@@ -87,7 +87,7 @@
           </div>
           <div class="form-group col-3">
             <label for="tanggal">Tanggal</label>
-            <input type="datetime-local" class="form-control" placeholder="Tanggal"  id="tanggal" name="tanggal">  
+            <input type="datetime-local" class="form-control" placeholder="Tanggal"  id="tanggal" name="tanggal">
           </div>
           <div class="form-group col-2">
             <label for="Total">Total</label>
@@ -121,7 +121,7 @@
           </div>
           <div class="form-group col-3">
             <label for="alamat">alamat</label>
-            <textarea class="form-control" rows="3" placeholder="Masukkan alamat" name="alamat" id="alamat"></textarea>  
+            <textarea class="form-control" rows="3" placeholder="Masukkan alamat" name="alamat" id="alamat"></textarea>
           </div>
           <div class="form-group col-3">
             <label>Pembayaran</label>
@@ -132,7 +132,7 @@
           </div>
           <div class="form-group col-3">
             <label for="hari">Hari</label>
-            <input type="text" class="form-control"  id="hari" name="hari">  
+            <input type="text" class="form-control"  id="hari" name="hari">
           </div>
         </div>
         <div class="row">

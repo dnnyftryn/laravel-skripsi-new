@@ -22,7 +22,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->invoice_id }}</td>
-                <td>{{ $item->nama_penjual }}</td>
+                <td>{{ $item->nama_pembeli }}</td>
                 <td>{{ $item->alamat }}</td>
                 <td>{{ $item->pembayaran }}</td>
                 <td>{{ $item->tanggal_jatuh_tempo }}</td>

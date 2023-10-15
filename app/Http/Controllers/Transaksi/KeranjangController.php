@@ -9,14 +9,16 @@ class KeranjangController extends Controller
 {
     public function store_pembelian(Request $request)
     {
-        $user_id        = auth()->user()->id;
-        $kode_barang    = $request->kode_barang;
-        $nama_barang    = $request->nama_barang;
-        $jumlah         = $request->jumlah;
-        $harga          = $request->harga_new;
-        $satuan         = $request->satuan;
-        $discount       = $request->discount;
-        $total          = $request->total_keranjang_new;
+        $user_id            = auth()->user()->id;
+        $kode_barang        = $request->kode_barang;
+        $nama_barang        = $request->nama_barang;
+        $jumlah             = $request->jumlah;
+        $harga_jual         = $request->harga_new;
+        $harga_beli         = $request->harga_beli_new;
+        $satuan             = $request->satuan;
+        $discount           = $request->discount;
+        $total              = $request->total_keranjang_new;
+        $total_beli         = $request->total_beli_keranjang;
 
         $query = \DB::table('keranjang')
             ->insert([
@@ -24,10 +26,12 @@ class KeranjangController extends Controller
                 'kode_barang' => $kode_barang,
                 'nama_barang' => $nama_barang,
                 'jumlah' => $jumlah,
-                'harga' => $harga,
+                'harga_jual' => $harga_jual,
+                'harga_beli' => $harga_beli,
                 'satuan' => $satuan,
                 'discount' => $discount,
-                'total' => $total,
+                'total_jual' => $total,
+                'total_beli' => $total_beli,
                 'status' => 'pembelian'
             ]);
 
@@ -40,14 +44,16 @@ class KeranjangController extends Controller
 
     public function store_penjualan(Request $request)
     {
-        $user_id = auth()->user()->id;
-        $kode_barang = $request->kode_barang;
-        $nama_barang = $request->nama_barang;
-        $jumlah = $request->jumlah;
-        $harga = $request->harga;
-        $satuan = $request->satuan;
-        $discount = $request->discount;
-        $total = $request->total_keranjang_new;
+        $user_id            = auth()->user()->id;
+        $kode_barang        = $request->kode_barang;
+        $nama_barang        = $request->nama_barang;
+        $jumlah             = $request->jumlah;
+        $harga_jual         = $request->harga_new;
+        $harga_beli         = $request->harga_beli_new;
+        $satuan             = $request->satuan;
+        $discount           = $request->discount;
+        $total              = $request->total_keranjang_new;
+        $total_beli         = $request->total_beli_keranjang;
 
         $query = \DB::table('keranjang')
             ->insert([
@@ -55,10 +61,12 @@ class KeranjangController extends Controller
                 'kode_barang' => $kode_barang,
                 'nama_barang' => $nama_barang,
                 'jumlah' => $jumlah,
-                'harga' => $harga,
+                'harga_jual' => $harga_jual,
+                'harga_beli' => $harga_beli,
                 'satuan' => $satuan,
                 'discount' => $discount,
-                'total' => $total,
+                'total_jual' => $total,
+                'total_beli' => $total_beli,
                 'status' => 'penjualan'
             ]);
 
@@ -68,6 +76,8 @@ class KeranjangController extends Controller
             return redirect()->back()->with('error', 'Barang gagal ditambahkan ke keranjang');
         }
     }
+
+
 
     public function destroy($id)
     {

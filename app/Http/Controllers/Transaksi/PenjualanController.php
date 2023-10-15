@@ -19,7 +19,7 @@ class PenjualanController extends Controller
         $total = \DB::table('keranjang')
             ->where('user_id', auth()->user()->id)
             ->where('status', 'penjualan')
-            ->sum('total');
+            ->sum('total_jual');
         $member = \DB::table('member')
             ->select('id_member', 'nama_member')
             ->get();
@@ -51,15 +51,14 @@ class PenjualanController extends Controller
     {
         $this->validate($request,[
             'nomor_faktur' => 'required',
-            'nama_supplier' => 'required',
             'pembayaran' => 'required',
             'tanggal' => 'required',
             'alamat' => 'required'
         ]);
-        
+
         $penjualan = new Penjualan;
         $penjualan->invoice_id = $request->nomor_faktur;
-        $penjualan->nama_pembeli = $request->id_member;
+        $penjualan->nama_pembeli = $request->nama_member;
         $penjualan->pembayaran = $request->pembayaran;
         $penjualan->tanggal = $request->tanggal;
         $penjualan->alamat = $request->alamat;
@@ -83,16 +82,24 @@ class PenjualanController extends Controller
             ->get();
 
         foreach ($keranjang as $item) {
-            $detail_penjualan = \DB::table('penjualan_detail')
+
+             $laba = $item->total_beli - $item->total_jual;
+
+            $detail_pembelian = \DB::table('penjualan_detail')
                 ->insert([
+                    // tambahkan ini untuk mengetahui siapa yang melakukan transaksi, bisa saja diisi dengan '1' atau '2' atau '3' atau '4' atau '5
+                    'user_id' => auth()->user()->id,
                     'invoice_id' => $request->nomor_faktur,
                     'kode_barang' => $item->kode_barang,
                     'nama_barang' => $item->nama_barang,
                     'jumlah' => $item->jumlah,
-                    'harga' => $item->harga,
+                    'harga_jual' => $item->harga_jual,
+                    'harga_beli' => $item->harga_beli,
                     'satuan' => $item->satuan,
                     'discount' => $item->discount,
-                    'total' => $item->total,
+                    'total_jual' => $item->total_jual,
+                    'total_beli' => $item->total_beli,
+                    'laba' => $laba
                 ]);
 
             $barang = \DB::table('barang')

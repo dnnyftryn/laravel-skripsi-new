@@ -21,6 +21,18 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
+
+                            {{-- menampilkan error validasi --}}
+                            @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -47,9 +59,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat/ Jalan</label>
-                                    <input type="text" name="jalan" class="form-control" id="jalan" placeholder="Nomor Rumah dan Nama Jalan">
+                                    <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Nomor Rumah dan Nama Jalan">
                                     <br>
-                                    <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Apartemen, Suit, unit, dll (opsional)">
+                                    <input type="text" name="jalan" class="form-control" id="jalan" placeholder="Apartemen, Suit, unit, dll (opsional)">
                                 </div>
                                 <div class="form-group">
                                     <label>Kota</label>
@@ -146,21 +158,20 @@
                                 <h3 class="card-title">Pemesanan</h3>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
-                                <button type="submit" class="btn btn-danger">Buat Pesanan</button>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <a href=""></a>
-                                <button type="button" class="btn btn-success btn-block" data-toggle="dropdown"><i class="fa-brands fa-whatsapp"></i> Pesan Via WhatsApp</button>
-                                <div class="dropdown-menu btn-block" role="menu">
-                                    <a class="dropdown-item" href="https://wa.me/6282119232351?text=Hai%20Admin%20!%0ANama%20Depan%20:%0ANama%20Belakang%20:%0ANo.%20Member%20:%0ANegara/%20Wilayah%20:%0AAlamat%20:%20">Admin 1</a>
-                                    <a class="dropdown-item" href="https://wa.me/6282119232351?text=Hai%20Admin%20!%0ANama%20Depan%20:%0ANama%20Belakang%20:%0ANo.%20Member%20:%0ANegara/%20Wilayah%20:%0AAlamat%20:%20">Admin 2</a>
-                                </div>
+                        <div class="card-body row">
+                            <div class="col-md-12">
+                                {{-- <button type="button" class="btn btn-primary btn-block">Buat Pesanan</button> --}}
+                                <button type="submit" class="btn btn-success btn-block">
+                                    <i class="fab fa-whatsapp"></i>
+                                    Order via Whatsapp
+                                </button>
 
                             </div>
+                            {{-- <div class="row">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <br>
+                                <button type="submit" class="btn btn-danger">Buat Pesanan</button>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

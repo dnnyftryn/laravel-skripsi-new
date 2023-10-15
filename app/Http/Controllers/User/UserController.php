@@ -80,7 +80,7 @@ class UserController extends Controller
         $sub_total = \DB::table('keranjang')
             ->where('user_id', auth()->user()->id)
             ->where('status', 'keranjang_user')
-            ->sum('total');
+            ->sum('total_jual');
 
         return view('user.produk.keranjang.index', compact('data', 'count', 'sub_total'));
     }
@@ -110,12 +110,24 @@ class UserController extends Controller
         $sub_total = \DB::table('keranjang')
             ->where('user_id', auth()->user()->id)
             ->where('status', 'keranjang_user')
-            ->sum('total');
+            ->sum('total_jual');
+            
         return view('user.produk.keranjang.checkout', compact('data', 'count', 'sub_total'));
     }
 
     public function sendWhatsApp(Request $request)
     {
+        $this->validate($request,[
+            'nama_depan' => 'required',
+            'alamat' => 'required',
+            'kota' => 'required',
+            'provinsi' => 'required',
+            'kode_pos' => 'required',
+            'Telepon' => 'required',
+            'tanggal_ambil' => 'required',
+         ]);
+
+
         $count = \DB::table('keranjang')
                 ->where('user_id', auth()->user()->id)
                 ->where('status', 'keranjang_user')

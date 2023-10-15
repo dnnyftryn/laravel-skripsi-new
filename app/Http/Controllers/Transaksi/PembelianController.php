@@ -24,26 +24,16 @@ class PembelianController extends Controller
         $total_bayar = \DB::table('keranjang')
             ->where('user_id', auth()->user()->id)
             ->where('status', 'pembelian')
-            ->sum('total');
-        
+            ->sum('total_jual');
+
         // $total_bayar = number_format($total_bayar, 2);
         // dd($total_bayar);
 
         $supplier = \DB::table('supplier')
             ->get();
-        
-        
-        return view('admin.transaksi.pembelian.index', compact('nomor_faktur', 'keranjang', 'total_bayar', 'supplier'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+
+        return view('admin.transaksi.pembelian.index', compact('nomor_faktur', 'keranjang', 'total_bayar', 'supplier'));
     }
 
     /**
@@ -90,6 +80,9 @@ class PembelianController extends Controller
             ->get();
 
         foreach ($keranjang as $item) {
+
+            $laba = $item->total_beli - $item->total_jual;
+
             $detail_pembelian = \DB::table('pembelian_detail')
                 ->insert([
                     // tambahkan ini untuk mengetahui siapa yang melakukan transaksi, bisa saja diisi dengan '1' atau '2' atau '3' atau '4' atau '5
@@ -98,16 +91,19 @@ class PembelianController extends Controller
                     'kode_barang' => $item->kode_barang,
                     'nama_barang' => $item->nama_barang,
                     'jumlah' => $item->jumlah,
-                    'harga' => $item->harga,
+                    'harga_jual' => $item->harga_jual,
+                    'harga_beli' => $item->harga_beli,
                     'satuan' => $item->satuan,
                     'discount' => $item->discount,
-                    'total' => $item->total,
+                    'total_jual' => $item->total_jual,
+                    'total_beli' => $item->total_beli,
+                    'laba' => $laba
                 ]);
-            
+
             $barang = \DB::table('barang')
                 ->where('kode_barang', $item->kode_barang)
                 ->first();
-            
+
             $stok = $barang->jumlah + $item->jumlah;
 
             $update_stok = \DB::table('barang')

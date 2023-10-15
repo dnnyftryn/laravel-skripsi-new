@@ -15,14 +15,18 @@ return new class extends Migration
     {
         Schema::create('penjualan_detail', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
             $table->string('invoice_id');
             $table->string('kode_barang');
             $table->string('nama_barang');
             $table->integer('jumlah');
-            $table->string('harga');
+            $table->integer('harga_jual');
+            $table->integer('harga_beli');
+            $table->integer('laba');
             $table->string('satuan');
             $table->integer('discount')->nullable();
-            $table->string('total');
+            $table->string('total_jual');
+            $table->string('total_beli');
             $table->timestamps();
         });
     }

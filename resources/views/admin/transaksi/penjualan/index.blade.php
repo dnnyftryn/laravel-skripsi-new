@@ -33,7 +33,8 @@
         }).format(number);
     }
 
-    var harga = 0;
+    var harga_jual = 0;
+    var harga_beli = 0;
 
     $(document).ready(function(){
     console.log("ready");
@@ -58,29 +59,36 @@
                     onAutocomplete: function(val) {
                         // Callback function when value is autcompleted.
                         // console.log(val);
-                        var harga_currency = dataCust2[val].harga_beli
-                        harga = dataCust2[val].harga_beli
+                        var harga_jual_currency = dataCust2[val].harga_jual
+                        harga_jual = dataCust2[val].harga_jual
 
-                        $('#harga_new').val(harga);
+                        var harga_beli_currency = dataCust2[val].harga_beli
+                        harga_beli = dataCust2[val].harga_beli
+
+                        $('#harga_new').val(harga_jual);
+                        $('#harga').val(rupiah(harga_jual_currency));
+
+                        $('#harga_beli').val(rupiah(harga_beli_currency));
+                        $('#harga_beli_new').val(harga_beli);
+                        //   console.log(number_format(harga))
 
                         $('#nama_barang').val(dataCust2[val].nama_barang);
-                        $('#harga').val(rupiah(harga_currency));
                     },
                 });
             }
         });
     });
 
-        document.getElementById('total_keranjang').addEventListener('click', function() {
+    document.getElementById('total_keranjang').addEventListener('mousemove', function() {
             var jumlah_barang = document.getElementById('jumlah').value;
-            // var harga = document.getElementById('harga').value;
 
-            var total = jumlah_barang * harga;
-            var value = total.toLocaleString()
+            var total_jual = jumlah_barang * harga_jual;
+            var total_beli = jumlah_barang * harga_beli;
+            
+            document.getElementById('total_beli_keranjang').value = total_beli;
 
-            document.getElementById('total_keranjang_new').value = total;
-
-            document.getElementById('total_keranjang').value = rupiah(total);
+            document.getElementById('total_keranjang_new').value = total_jual;
+            document.getElementById('total_keranjang').value = rupiah(total_jual);
         });
 
         document.getElementById('bayar').addEventListener('mousemove', function() {

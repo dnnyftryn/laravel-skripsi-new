@@ -115,7 +115,7 @@
                       <i class="far fa-circle nav-icon"></i>
                       <p>Transaksi Pembelian</p>
                     </a>
-                  </li> 
+                  </li>
                 </ul>
               </li>
             </li>
@@ -130,17 +130,65 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('laporan-penjualan.index')}}" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Laporan Penjualan</p>
+                    <p>
+                      Laporan Penjualan
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
                   </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Per Barang</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Per Pelanggan</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Per Pembayaran</p>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
+              </ul>
+              <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('laporan-pembelian.index')}}" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Laporan Pembelian</p>
+                    <p>
+                      Laporan Pembelian
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
                   </a>
-                </li> 
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Per Barang</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Per Pelanggan</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Per Pembayaran</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </li>
             <li class="nav-item">

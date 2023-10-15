@@ -21,6 +21,7 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Data Keranjang</h3>
+
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 300px;">
@@ -44,7 +45,7 @@
                   <td>{{ $keranjangs->jumlah }}</td>
                   <td>{{ $keranjangs->satuan }}</td>
                   <td>{{ $keranjangs->discount }}</td>
-                  <td> Rp. @convert($keranjangs->total)</td>
+                  <td> Rp. @convert($keranjangs->total_jual)</td>
                   <td>
                     <form action="{{ route('keranjang.destroy', $keranjangs->id) }}" method="POST">
                       @csrf
@@ -116,9 +117,9 @@
           </div> --}}
           <div class="form-group col-3">
             <label>Member</label>
-            <select class="form-control select2" style="width: 100%;" name="id_member" id="id_member">
+            <select class="form-control select2" style="width: 100%;" name="nama_member" id="nama_member">
               @foreach ($member as $members)
-                <option value="{{ $members->id_member }}">{{ $members->nama_member }}</option>
+                <option value="{{ $members->nama_member }}">{{ $members->nama_member }}</option>
               @endforeach
             </select>
           </div>

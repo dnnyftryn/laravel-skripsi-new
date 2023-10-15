@@ -101,7 +101,7 @@
                 </tbody>
                 <tfoot>
                     <td>
-                        <form action="{{ route('keranjang.checkout', $item->id) }}" method="POST">
+                        <form action="" method="POST">
                             @csrf
                             @method('GET')
                         {{-- <a href="{{ route(keranjang.checkout)}}" class="btn btn-block btn-primary">Lanjutkan Checkout</a> --}}

@@ -19,10 +19,12 @@ return new class extends Migration
             $table->string('kode_barang');
             $table->string('nama_barang');
             $table->integer('jumlah');
-            $table->string('harga');
+            $table->integer('harga_jual');
+            $table->integer('harga_beli');
             $table->string('satuan');
             $table->integer('discount')->nullable();
-            $table->string('total');
+            $table->integer('total_jual');
+            $table->integer('total_beli');
             $table->string('status');
             $table->timestamps();
         });

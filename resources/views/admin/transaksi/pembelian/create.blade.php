@@ -23,15 +23,27 @@
                 <input type="text" class="form-control" placeholder="Qty" id="jumlah" name="jumlah">
             </div>
             <div class="form-group col-2">
-                <label for="harga">Harga</label>
+                <label for="harga">Harga Jual</label>
                 <div class="input-field">
                     <input type="text" class="form-control harga" placeholder="Harga Barang"  id="harga" name="harga">
+                </div>
+            </div>
+            <div class="form-group col-2">
+                <label for="harga">Harga Beli</label>
+                <div class="input-field">
+                    <input type="text" class="form-control harga" placeholder="Harga Barang"  id="harga_beli" name="harga_beli">
                 </div>
             </div>
             <div class="form-group col-2" hidden>
                 <label for="harga">Harga hide</label>
                 <div class="input-field">
                     <input type="text" class="form-control harga_new" placeholder="Harga Barang"  id="harga_new" name="harga_new">
+                </div>
+            </div>
+            <div class="form-group col-2" hidden>
+                <label for="harga">Harga hide</label>
+                <div class="input-field">
+                    <input type="text" class="form-control harga_beli_new" placeholder="Harga Barang"  id="harga_beli_new" name="harga_beli_new">
                 </div>
             </div>
             <div class="form-group col-1">
@@ -48,6 +60,10 @@
             <div class="form-group col-2">
                 <label for="total">Total</label>
                 <input type="text" class="form-control" placeholder="Total Barang"  id="total_keranjang" name="total_keranjang" @readonly(true)>
+            </div>
+            <div class="form-group col-2" hidden>
+                <label for="total">Total Beli</label>
+                <input type="text" class="form-control" placeholder="Total Barang"  id="total_beli_keranjang" name="total_beli_keranjang" @readonly(true)>
             </div>
             <div class="form-group col-2" hidden>
                 <label for="total">Total hide</label>

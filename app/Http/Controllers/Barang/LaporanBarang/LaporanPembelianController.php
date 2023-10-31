@@ -90,50 +90,21 @@ class LaporanPembelianController extends Controller
      * controller ini untuk mencari laporan
      */
 
-    public function cari(Request $request)
-    {
+     public function cari(Request $request)
+     {
         $this->validate($request, [
-            'tanggal_before' => 'required'
+            'tanggal_before' => 'required',
+            'tanggal_after' => 'required'
         ]);
-        $str = "SELECT * FROM pembelian WHERE ";
 
         $tanggal_sebelum = $request->tanggal_before;
         $tanggal_sesudah = $request->tanggal_after;
 
-        $nama_pembeli = $request->nama_pembeli;
+        $data = \DB::table('penjualan')
+                ->whereBetween('tanggal', [$tanggal_sebelum, $tanggal_sesudah])
+                ->get();
 
-        $pembayaran = $request->pembayaran;
-        $tanggal_japo_sebelum = $request->tanggal_jatuh_tempo_before;
-        $tanggal_japo_sesudah = $request->tanggal_jatuh_tempo_after;
+        return view('admin.barang.laporan-barang.pembelian.result', compact('data'));
 
-        switch ($tanggal_sebelum) {
-            case null;
-                $str .= "";
-                break;
-
-            default:
-                if ($tanggal_sesudah != null) {
-                    $str .= "tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'";
-                } else {
-                    $str .= "tanggal = '$tanggal_sebelum'";
-                }
-        }
-
-        switch ($nama_pembeli) {
-            case null;
-                $str .= "";
-                break;
-
-            default:
-                $nama_pembeli = implode("', '", $nama_pembeli);
-
-                $str .= "AND nama_penjual IN ('$nama_pembeli')";
-        }
-
-        $query = \DB::select(\DB::raw($str));
-        dd($str);
-
-        return view('admin.barang.laporan-barang.pembelian.result');
-
-    }
+     }
 }

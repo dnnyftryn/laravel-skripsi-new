@@ -139,23 +139,17 @@
                   </a>
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                      <a href="" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Per Barang</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Per Pelanggan</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Per Pembayaran</p>
-                      </a>
-                    </li>
+                        <a href="{{route('laporan-penjualan.index')}}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Laporan</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Detail Laporan</p>
+                        </a>
+                      </li>
                   </ul>
                 </li>
               </ul>
@@ -170,21 +164,15 @@
                   </a>
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{route('laporan-pembelian.index')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Per Barang</p>
+                        <p>Laporan</p>
                       </a>
                     </li>
                     <li class="nav-item">
                       <a href="" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Per Pelanggan</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Per Pembayaran</p>
+                        <p>Detail Laporan</p>
                       </a>
                     </li>
                   </ul>

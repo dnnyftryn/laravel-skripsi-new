@@ -1,7 +1,7 @@
 @extends('layouts.template.app-master')
 
 @section('context')
-    Laporan Pembelian Barang
+    Laporan Penjualan Barang
 @endsection
 
 @section('content')

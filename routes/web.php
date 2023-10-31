@@ -113,6 +113,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/print-faktur-pembelian/{id}', [DashboardAdminController::class, 'print_faktur_pembelian'])->name('print_faktur_pembelian');
 
     Route::get('/kodebarang', [StockOpnameController::class, 'getKodeBarang'])->name('kodebarang.index');
+    
     Route::get('/laporan-pembelian-cari', [LaporanPembelianController::class, 'cari'])->name('laporan_pembelian.cari');
     Route::get('/laporan-penjualan-cari', [LaporanPenjualanController::class, 'cari'])->name('laporan_penjualan.cari');
 

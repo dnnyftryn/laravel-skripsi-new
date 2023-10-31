@@ -13,7 +13,7 @@ class Penjualan extends Model
 
     protected $fillable = [
         'invoice_id',
-        'name_pembeli',
+        'nama_pembeli',
         'pembayaran',
         'jatuh_tempo',
         'tanggal_jatuh_tempo',

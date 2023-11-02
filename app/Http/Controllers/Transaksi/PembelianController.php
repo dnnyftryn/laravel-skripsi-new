@@ -53,22 +53,23 @@ class PembelianController extends Controller
         ]);
 
 
-        $pembelian = new Pembelian;
-        $pembelian->invoice_id = $request->nomor_faktur;
-        $pembelian->nama_penjual = $request->nama_supplier;
-        $pembelian->pembayaran = $request->pembayaran;
-        $pembelian->tanggal = $request->tanggal;
-        $pembelian->alamat = $request->alamat;
+        $pembelian                  = new Pembelian;
+        $pembelian->invoice_id      = $request->nomor_faktur;
+        $pembelian->user_id         = auth()->user()->id;
+        $pembelian->nama_penjual    = $request->nama_supplier;
+        $pembelian->pembayaran      = $request->pembayaran;
+        $pembelian->tanggal         = $request->tanggal;
+        $pembelian->alamat          = $request->alamat;
 
         if ($request->pembayaran == 'kredit') {
-            $pembelian->jatuh_tempo = $request->hari;
+            $pembelian->jatuh_tempo     = $request->hari;
 
-            $date = Carbon::parse($request->tanggal);
-            $new_date = $date->addDays($request->hari);
+            $date                           = Carbon::parse($request->tanggal);
+            $new_date                       = $date->addDays($request->hari);
             $pembelian->tanggal_jatuh_tempo = $new_date;
 
         } else {
-            $pembelian->jatuh_tempo = null;
+            $pembelian->jatuh_tempo         = null;
             $pembelian->tanggal_jatuh_tempo = date('Y-m-d');
         }
 
@@ -97,7 +98,8 @@ class PembelianController extends Controller
                     'discount' => $item->discount,
                     'total_jual' => $item->total_jual,
                     'total_beli' => $item->total_beli,
-                    'laba' => $laba
+                    'laba' => $laba,
+                    'created_at' => date('Y-m-d H:i:s')
                 ]);
 
             $barang = \DB::table('barang')

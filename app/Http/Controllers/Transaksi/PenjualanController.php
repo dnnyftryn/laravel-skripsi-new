@@ -56,18 +56,19 @@ class PenjualanController extends Controller
             'alamat' => 'required'
         ]);
 
-        $penjualan = new Penjualan;
-        $penjualan->invoice_id = $request->nomor_faktur;
-        $penjualan->nama_pembeli = $request->nama_member;
-        $penjualan->pembayaran = $request->pembayaran;
-        $penjualan->tanggal = $request->tanggal;
-        $penjualan->alamat = $request->alamat;
+        $penjualan                  = new Penjualan;
+        $penjualan->invoice_id      = $request->nomor_faktur;
+        $penjualan->user_id         = auth()->user()->id;
+        $penjualan->nama_pembeli    = $request->nama_member;
+        $penjualan->pembayaran      = $request->pembayaran;
+        $penjualan->tanggal         = $request->tanggal;
+        $penjualan->alamat          = $request->alamat;
 
         if ($request->pembayaran == 'kredit') {
             $penjualan->jatuh_tempo = $request->hari;
 
-            $date = Carbon::parse($request->tanggal);
-            $new_date = $date->addDays($request->hari);
+            $date                           = Carbon::parse($request->tanggal);
+            $new_date                       = $date->addDays($request->hari);
             $penjualan->tanggal_jatuh_tempo = $new_date;
         } else {
             $penjualan->jatuh_tempo = null;
@@ -99,7 +100,8 @@ class PenjualanController extends Controller
                     'discount' => $item->discount,
                     'total_jual' => $item->total_jual,
                     'total_beli' => $item->total_beli,
-                    'laba' => $laba
+                    'laba' => $laba,
+                    'created_at' => date('Y-m-d H:i:s')
                 ]);
 
             $barang = \DB::table('barang')

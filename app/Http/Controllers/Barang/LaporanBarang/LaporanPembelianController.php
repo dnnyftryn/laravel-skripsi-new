@@ -20,6 +20,16 @@ class LaporanPembelianController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_detail()
+    {
+        return view('admin.barang.laporan-barang.pembelian.detail.index');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -100,11 +110,31 @@ class LaporanPembelianController extends Controller
         $tanggal_sebelum = $request->tanggal_before;
         $tanggal_sesudah = $request->tanggal_after;
 
-        $data = \DB::table('penjualan')
+        $data = \DB::table('pembelian')
                 ->whereBetween('tanggal', [$tanggal_sebelum, $tanggal_sesudah])
                 ->get();
 
         return view('admin.barang.laporan-barang.pembelian.result', compact('data'));
+     }
 
+    /**
+    * controller ini untuk mencari detail laporan
+    */
+
+     public function cari_detail(Request $request)
+     {
+        $this->validate($request, [
+            'tanggal_before' => 'required',
+            'tanggal_after' => 'required'
+        ]);
+
+        $tanggal_sebelum = $request->tanggal_before;
+        $tanggal_sesudah = $request->tanggal_after;
+
+        $data = \DB::table('pembelian_detail')
+                ->whereBetween('created_at', [$tanggal_sebelum, $tanggal_sesudah])
+                ->get();
+
+        return view('admin.barang.laporan-barang.pembelian.detail.result', compact('data'));
      }
 }

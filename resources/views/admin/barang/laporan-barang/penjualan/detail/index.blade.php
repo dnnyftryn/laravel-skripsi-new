@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Laporan Pembelian Barang</h3>
+                        <h3 class="card-title">Laporan Detail Penjualan Barang</h3>
                     </div>
 
                     <div class="card-body">
@@ -28,7 +28,7 @@
                         </div>
                         @endif
 
-                        <form action="{{route('laporan_pembelian.cari')}}" method="GET">
+                        <form action="{{route('laporan_penjualan-detail.cari')}}" method="GET">
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Tanggal</label>
                                 <div class="form-group col-5" id="tanggal_before">

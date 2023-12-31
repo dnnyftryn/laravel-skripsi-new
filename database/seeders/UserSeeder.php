@@ -19,6 +19,21 @@ class UserSeeder extends Seeder
     {
 
         $faker = \Faker\Factory::create('id_ID');
+        $data = [
+            [
+                'name' => 'user',
+                'email' => 'user@gmail.com',
+                'password' => Hash::make('password'),
+                'type' => 3
+            ], 
+            [
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('password'),
+                'type' => 1
+            ]
+        ];
+        DB::table('users')->insert($data);
 
         for ($i = 0; $i < 10; $i++) {
             User::create([

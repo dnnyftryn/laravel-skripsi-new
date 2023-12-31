@@ -40,7 +40,7 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('/login', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 Route::get('search', function (Request $request) {

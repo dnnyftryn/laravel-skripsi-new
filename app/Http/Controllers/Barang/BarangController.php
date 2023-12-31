@@ -106,7 +106,7 @@ class BarangController extends Controller
         $barang->image          = $request->file('image')->store('barang-images');
         $barang->save();
 
-        return redirect()->route('barang.index');
+        return redirect()->route('barang.index')->with('success', 'Data berhasil diupdate');
     }
 
     /**

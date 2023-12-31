@@ -3,6 +3,14 @@
 @section('main')
 
 <div class="container">
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>{{ $message }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
@@ -65,8 +73,8 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                        {{ __('Belum punya akun??') }}
                                     </a>
                                 @endif
                             </div>

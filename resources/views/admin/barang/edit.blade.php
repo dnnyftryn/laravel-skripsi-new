@@ -29,15 +29,15 @@
                             <div class="form-group">
                                 <label for="name">Nama Barang</label>
                                 <input type="text" name="nama_barang" class="form-control" id="nama_barang"
-                                    placeholder="Masukkan nama barang">
+                                    placeholder="Masukkan nama barang" value="{{ $barang->nama_barang }}">
                             </div>
                             <div class="form-group">
                                 <label for="name">Jumlah Barang</label>
                                 <input type="text" name="jumlah" class="form-control" id="jumlah"
-                                    placeholder="Masukkan jumlah barang">
+                                    placeholder="Masukkan jumlah barang" value="{{ $barang->jumlah }}">
                             </div>
                             <div class="mb-3">
-                              <label for="image" class="form-label">Motor Image</label>
+                              <label for="image" class="form-label">Gambar Barang</label>
                               <img class="img-preview img-fluid mb-3 col-sm-5">
                               <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
                                   name="image" onchange="previewImage()">

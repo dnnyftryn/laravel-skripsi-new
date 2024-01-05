@@ -22,6 +22,9 @@
           <li class="nav-item">
             <a href="{{route('produk.index')}}" class="nav-link">Produk</a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('user.edit', $user->id)}}" class="nav-link">Edit Profile</a>
+          </li>
         </ul>
       </div>
 

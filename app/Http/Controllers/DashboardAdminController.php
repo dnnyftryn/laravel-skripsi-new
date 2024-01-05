@@ -9,6 +9,8 @@ use App\Models\Supplier;
 use App\Models\User;
 use App\Models\Penjualan;
 use App\Models\Pembelian;
+use App\Models\BarangMasuk;
+use App\Models\BarangKeluar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use PDF;
@@ -19,15 +21,28 @@ class DashboardAdminController extends Controller
     {
         if (Auth::check()) {
             $users = User::latest()->count('id');
-            $barang = Barang::latest()->count('id');
             $supplier = Supplier::latest()->count('id');
+
+            $barang_masuk = BarangMasuk::latest()->count('id');
+            $barang_keluar = BarangKeluar::latest()->count('id');
+
             $penjualan = Penjualan::all();
             $pembelian = Pembelian::all();
-            // $member = Member::latest()->count('id');
-            $transaksi = Penjualan::orderBy('jatuh_tempo', 'DESC')->get();
-            // $kasir = Kasir::latest()->count('id');
-            // dd($penjualan);
-            return view('admin.dashboard', compact('transaksi', 'users', 'barang', 'supplier', 'penjualan', 'pembelian'));
+            
+            $transaksi_penjualan = Penjualan::orderBy('jatuh_tempo', 'DESC')->get();
+            $transaksi_pembelian = Pembelian::orderBy('jatuh_tempo', 'DESC')->get();
+
+            return view('admin.dashboard', compact(
+                'users',
+                'supplier', 
+                'barang_masuk', 
+                'barang_keluar', 
+                'penjualan', 
+                'pembelian',
+                'transaksi_penjualan',
+                'transaksi_pembelian',
+                )
+            );
         } else {
             return view('auth.login');
         }

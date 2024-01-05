@@ -6,6 +6,14 @@
 
 @section('content')
     <div class="container">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show " id="notifDiv" role="alert">
+          <strong>{{ $message }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endif
         <div class="row row-cols-1 row-cols-md-3">
             @foreach ($data as $item)
             <div class="col mb-6">

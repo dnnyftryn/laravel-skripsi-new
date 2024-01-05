@@ -13,15 +13,17 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        @endif
+      @endif
         <div class="container-fluid">
             <div class="row">
                 <div class="row">
                     <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">Kategori Barang</h3>
-                          <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-default"> 
-                            Tambah Kategori Barang
+                          <button type="button" class="btn btn-primary float-right"> 
+                            <a href="{{ route('kategori.create') }}" class="text-white">
+                                Tambah kategori Barang
+                            </a>
                           </button>
                         </div>
                         <!-- /.card-header -->

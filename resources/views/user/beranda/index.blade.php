@@ -10,6 +10,14 @@
 
 @section('content')
     <div class="container">
+      @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show " id="notifDiv" role="alert">
+          <strong>{{ $message }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
         <div class="row">
             <div class="col-12">
                 <div class="banner"> <img src="{{asset('icon/image_2.png')}}">

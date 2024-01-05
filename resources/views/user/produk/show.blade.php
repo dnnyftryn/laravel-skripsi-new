@@ -6,6 +6,21 @@
 
 @section('content')
     <div class="container">
+      @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show " id="notifDiv" role="alert">
+          <strong>{{ $message }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @elseif ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show " id="notifDiv" role="alert">
+          <strong>{{ $message }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
         <!-- Default box -->
       <div class="card card-solid">
         <form action="{{route('keranjang.index', $barang->kode_barang)}}" method="POST" enctype="multipart/form-data">

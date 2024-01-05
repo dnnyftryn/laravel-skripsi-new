@@ -48,6 +48,13 @@ class BarangMasukController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_barang' => 'required',
+            'jumlah' => 'required',
+            'satuan' => 'required',
+            'keterangan' => 'required'
+        ]);
+        
         $tanggal_masuk                  = Carbon::now()->format('Y-m-d H:i:s');
         $barang_masuk                   = new BarangMasuk;
         $barang_masuk->nama_barang      = $request->nama_barang;

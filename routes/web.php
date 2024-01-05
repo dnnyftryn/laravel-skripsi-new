@@ -19,6 +19,7 @@ use App\Http\Controllers\Barang\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\Barang\BarangKeluar\BarangKeluarController;
 
 use App\Http\Controllers\StockOpnameController;
+use App\Http\Controllers\SupplierController;
 
 use App\Http\Controllers\Transaksi\PembelianController;
 use App\Http\Controllers\Transaksi\PenjualanController;
@@ -99,6 +100,9 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/user/checkout/send', [UserController::class, 'sendWhatsApp'])->name('send.wa');
 
     Route::get('/detail-produk/{kode_barang}', [DetailController::class, 'show'])->name('detail-produk.index');
+
+    Route::get('/edit-profile/{id}', [Usercontroller::class, 'edit_user'])->name('user.edit');
+    Route::put('/update-profile/{id}', [Usercontroller::class, 'update_user'])->name('user.update');
 });
 
 /*------------------------------------------
@@ -127,6 +131,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/laporan-penjualan-detail', [LaporanPenjualanController::class, 'index_detail'])->name('detail-penjualan.index');
     Route::delete('/keranjang/{id}', [KeranjangController::class, 'destroy'])->name('keranjang.destroy');
 
+    Route::get('/user/index', [Usercontroller::class, 'index'])->name('user.index');
+    Route::delete('/user/{id}', [Usercontroller::class, 'destroy'])->name('user.destroy');
+
     Route::resource('/barang', BarangController::class);
     Route::resource('/stok-barang', StokBarangController::class);
     Route::resource('/barang-masuk', BarangMasukController::class);
@@ -138,6 +145,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/stok-opname', StokBarangController::class);
     Route::resource('/laporan-penjualan', LaporanPenjualanController::class);
     Route::resource('/laporan-pembelian', LaporanPembelianController::class);
+    Route::resource('/supplier', SupplierController::class);
 });
 
 /*------------------------------------------

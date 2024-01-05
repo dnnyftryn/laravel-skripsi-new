@@ -6,6 +6,15 @@
 
 @section('content')
     <div class="container">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show " id="notifDiv" role="alert">
+          <strong>{{ $message }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endif
+        
         @if ($count == '0')
         <div class="card">
             <!-- /.card-header -->
@@ -52,12 +61,12 @@
                         {{ $item->jumlah }}
                         --}}
                         <td>{{ $item->nama_barang }}</td>
-                        <td>{{ $item->harga }}</td>
+                        <td>{{ $item->harga_jual }}</td>
                         <td style="width: 10px">
                             {{-- <input type="text" class="form-control" placeholder="Jumlah Barang"  id="jumlah" name="jumlah" value="{{ $item->jumlah }}"> --}}
                             <input type="number" id="typeNumber" class="form-control typeNumber" name="typeNumber" value="{{ $item->jumlah }}" />
                         </td>
-                        <td>Rp. @convert($item->total)</td>
+                        <td>Rp. @convert($item->total_jual)</td>
                       </tr>
                     @endforeach
                 </tbody>

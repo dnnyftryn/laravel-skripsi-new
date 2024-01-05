@@ -34,11 +34,14 @@ class HomeController extends Controller
      */
     public function userHome()
     {
-        $count = \DB::table('keranjang')
-            ->where('user_id', auth()->user()->id)
-            ->where('status', 'keranjang_user')
-            ->count();
-        return view('user.beranda.index', compact('count'));
+        $id     = auth()->user()->id;
+        $user   = User::findOrFail($id);
+        $count  = \DB::table('keranjang')
+                    ->where('user_id', $id)
+                    ->where('status', 'keranjang_user')
+                    ->count();
+     
+        return view('user.beranda.index', compact('count', 'user'));
     }
 
     /**

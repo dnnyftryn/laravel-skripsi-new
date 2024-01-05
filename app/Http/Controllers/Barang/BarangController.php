@@ -51,6 +51,15 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'kode_barang' => 'required',
+            'nama_barang' => 'required',
+            'nama_kategori' => 'required',
+            'satuan' => 'required',
+            'harga_jual' => 'required',
+            'harga_beli' => 'required'
+        ]);
+
         $barang                 = new Barang;
         $barang->kode_barang    = $request->kode_barang;
         $barang->nama_barang    = $request->nama_barang;
@@ -99,6 +108,13 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'kode_barang' => 'required',
+            'nama_barang' => 'required',
+            'jumlah' => 'required',
+            'image' => 'required'
+        ]);
+
         $barang                 = Barang::findOrfail($id);
         $barang->kode_barang    = $request->kode_barang;
         $barang->nama_barang    = $request->nama_barang;

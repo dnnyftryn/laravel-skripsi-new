@@ -27,7 +27,7 @@ class KategoriBarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.barang.kategori-barang.create');
     }
 
     /**
@@ -38,6 +38,10 @@ class KategoriBarangController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_kategori' => 'required'
+        ]);
+
         $kategori = Kategori::insert([
             'nama_kategori' => $request->nama_kategori,
             'created_at' => now()
@@ -105,6 +109,6 @@ class KategoriBarangController extends Controller
     {
         Kategori::find($id)->delete();
 
-        return redirect()->route('kategori.index')->with('success', 'Data berhasil diubah');
+        return redirect()->route('kategori.index')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -17,7 +17,7 @@ class StockOpnameController extends Controller
     {
         $stok_opname = StockOpname::all();
         
-        return view('admin.barang.stock-opname.index', compact('stok_barang'));
+        return view('admin.stock-opname.index', compact('stok_opname'));
     }
 
     /**
@@ -38,16 +38,33 @@ class StockOpnameController extends Controller
      */
     public function store(Request $request)
     {
-        $stok_opname = new StockOpname();
-        $stok_opname->kode_barang = $request->kode_barang;
-        $stok_opname->nama_barang = $request->nama_barang;
-        $stok_opname->stok_aplikasi = $request->stok_aplikasi;
-        $stok_opname->stok_fisik = $request->stok_fisik;
+        $request->validate([
+            'kode_barang' => 'required',
+            'nama_barang' => 'required',
+            'stok_aplikasi' => 'required',
+            'stok_fisik' => 'required'
+        ]);
+        $kode_barang = $request->kode_barang;
+        $nama_barang = $request->nama_barang;
+        $stok_aplikasi = $request->stok_aplikasi;
+        $stok_fisik = $request->stok_fisik;
         $result = $stok_opname->stok_aplikasi - $stok_opname->stok_fisik;
-        $stok_opname->selisih = $result;
+        $selisih = $result;
 
 
-        $stok_opname->save();
+        $query = \DB::table('stock_opnemae')
+                    ->insert([
+                        `nama_barang` => $nama_barang ,
+                        `kode_barang`=> $kode_barang ,
+                        `stok_aplikasi` => $stok_aplikasi,
+                        `stok_fisik` => $stok_fisik,
+                        `selisih` => $selisih
+                    ]);
+        if ($query) {
+            return redirect()->route('stok-opname.index')->with('success', 'Data berhasil ditambahkan');
+        } else {
+            return redirect()->route('stok-opname.index')->with('failed', 'Data gagal ditambahkan');
+        }
     }
 
     /**

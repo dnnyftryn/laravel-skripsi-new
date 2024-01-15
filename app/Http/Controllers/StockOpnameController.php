@@ -38,16 +38,43 @@ class StockOpnameController extends Controller
      */
     public function store(Request $request)
     {
-        $stock_opname = new StockOpname;
-        $stock_opname->nama_barang = $request->nama_barang;
-        $stock_opname->kode_barang = $request->kode_barang;
-        $stock_opname->stok_aplikasi = $request->stok_aplikasi;
-        $stock_opname->stok_fisik = $request->stok_fisik;
-        $stock_opname->selisih = $stock_opname->stok_aplikasi - $stock_opname->stok_fisik;
+        $request->validate([
+            'kode_barang' => 'required',
+            'nama_barang' => 'required',
+            'stok_aplikasi' => 'required',
+            'stok_fisik' => 'required'
+        ]);
+        $kode_barang = $request->kode_barang;
+        $nama_barang = $request->nama_barang;
+        $stok_aplikasi = $request->stok_aplikasi;
+        $stok_fisik = $request->stok_fisik;
+        $result = $stok_opname->stok_aplikasi - $stok_opname->stok_fisik;
+        $selisih = $result;
 
-        $stock_opname->save();
 
-        return redirect()->route('stock-opname.index')->with('success', 'Stock Opname Berhasil Ditambahkan!');
+        $query = \DB::table('stock_opnemae')
+                    ->insert([
+                        `nama_barang` => $nama_barang ,
+                        `kode_barang`=> $kode_barang ,
+                        `stok_aplikasi` => $stok_aplikasi,
+                        `stok_fisik` => $stok_fisik,
+                        `selisih` => $selisih
+                    ]);
+        if ($query) {
+            return redirect()->route('stok-opname.index')->with('success', 'Data berhasil ditambahkan');
+        } else {
+            return redirect()->route('stok-opname.index')->with('failed', 'Data gagal ditambahkan');
+        }
+        // $stock_opname = new StockOpname;
+        // $stock_opname->nama_barang = $request->nama_barang;
+        // $stock_opname->kode_barang = $request->kode_barang;
+        // $stock_opname->stok_aplikasi = $request->stok_aplikasi;
+        // $stock_opname->stok_fisik = $request->stok_fisik;
+        // $stock_opname->selisih = $stock_opname->stok_aplikasi - $stock_opname->stok_fisik;
+
+        // $stock_opname->save();
+
+        // return redirect()->route('stock-opname.index')->with('success', 'Stock Opname Berhasil Ditambahkan!');
     }
 
     /**

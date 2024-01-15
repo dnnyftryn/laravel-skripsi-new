@@ -48,6 +48,13 @@ class BarangKeluarController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_barang' => 'required',
+            'jumlah' => 'required',
+            'satuan' => 'required',
+            'keterangan' => 'required'
+        ]);
+        
         $barang_keluar                 = new BarangKeluar;
         $barang_keluar->nama_barang    = $request->nama_barang;
         $barang_keluar->kode_barang    = $request->kode_barang;

@@ -30,12 +30,20 @@
                         <form action="{{ route('barang-keluar.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
+                                <div class="col-4">
+                                    <label for="render"></label>
+                                    <div id="reader" width="300"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="name">Kode Barang</label>
-                                <select class="form-control" name="kode_barang" id="">
+                                <input type="text" name="kode_barang" class="form-control" id="kode_barang"
+                                    placeholder="Masukkan Kode Barang">
+                                {{-- <select class="form-control" name="kode_barang" id="">
                                     @foreach ($barang as $kode_barang)
                                         <option value="{{ $kode_barang->kode_barang }}">{{ $kode_barang->kode_barang }}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
                             </div>
                             <div class="form-group">
                                 <label for="name">Nama Barang</label>
@@ -95,4 +103,24 @@
     </section>
     <!-- /.content -->
 
+@endsection
+
+@section('script')
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    {{-- <script src="{{ asset('plugins/html5-qrcode/html5-qrcode.min.js')}}"></script> --}}
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            // Handle on success condition with the decoded text or result.
+            console.log(`Scan result: ${decodedText}`, decodedResult);
+            $("#kode_barang").val(decodedText)
+        }
+        function onScanError(errorMessage) {
+            // handle on error condition, with error message
+            console.log(`Error scan result: `, errorMessage);
+        }
+
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+    </script>
 @endsection

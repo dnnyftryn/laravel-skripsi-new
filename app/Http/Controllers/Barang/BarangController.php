@@ -24,7 +24,7 @@ class BarangController extends Controller
         $barang = Barang::all();
         $count_barang = Barang::count();
         $tersedia = Barang::where('jumlah', '>=', 10)->count();
-        $akan_habis = Barang::where('jumlah', '<=', 10)->count();
+        $akan_habis = Barang::whereBetween('jumlah', [1, 10])->count();
         $habis = Barang::where('jumlah', '=', 0)->count();
         $count_barang_masuk = BarangMasuk::count();
         $count_barang_keluar = BarangKeluar::count();

@@ -32,8 +32,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Kategori Barang</label>
-                                <input type="text" name="kode_barang" class="form-control" id="kode_barang"
-                                    placeholder="Masukkan Kode Barang">
+                                <input type="text" name="nama_kategori" class="form-control" id="nama_kategori"
+                                    placeholder="Masukkan Nama Kategori">
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

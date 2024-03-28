@@ -20,11 +20,6 @@
                     <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">Data Barang</h3>
-                          <button type="button" class="btn btn-primary float-right"> 
-                            <a href="{{ route('barang.create') }}" class="text-white">
-                                Tambah Barang
-                            </a>
-                          </button>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -39,7 +34,6 @@
                                 <th>Satuan</th>
                                 <th>Status</th>
                                 <th>Gambar</th>
-                                <th>Action</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -51,7 +45,7 @@
                                   <td>{{ $barang->nama_kategori }}</td>
                                   <td>{{ $barang->jumlah }}</td>
                                   <td>{{ $barang->satuan }}</td>
-                                  <td> 
+                                  <td>
                                       @if ($barang->jumlah == 0)
                                           <span class="badge badge-danger">Stok Habis</span>
                                       @elseif ($barang->jumlah <= 10)
@@ -62,15 +56,6 @@
                                   </td>
                                   <td><img src="{{ asset('storage/' . $barang->image) }}"
                                       alt="{{ $barang->nama_kategori }}" style="max-width: 100px"></td>
-                                  <td>
-                                      <form action="" method="Post">
-                                          <a class="btn btn-warning" href=""><i class="fas fa-pen"></i></a>
-                                          @csrf
-                                          @method('DELETE')
-                                          <button type="submit" class="btn btn-danger"><i
-                                                  class="fas fa-trash"></i></button>
-                                      </form>
-                                  </td>
                                 </tr>
                               @endforeach
                             </tbody>

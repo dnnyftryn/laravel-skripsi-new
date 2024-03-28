@@ -16,20 +16,118 @@ class BarangSeeder extends Seeder
      */
     public function run()
     {
-       $faker = \Faker\Factory::create('id_ID');
+        DB::table('Barang')->insert([
 
-       for ($i = 0; $i < 10; $i++) {
-        Barang::create([
-            'kode_barang' => $faker->numberBetween(1000, 10000), // 'App\Models\Barang
-            'nama_barang' => $faker->name,
-            'nama_kategori' => $faker->name, // 'App\Models\Kategori
-            'deskripsi' => $faker->text(),
-            'jumlah' => $faker->numberBetween(1, 100),
-            'harga_beli' => $faker->numberBetween(1000, 10000),
-            'harga_jual' => $faker->numberBetween(1000, 10000),
-            'satuan' => 'karton', // 'App\Models\Satuan
-            'created_at' => now()
+            [
+                'kode_barang' => 001,
+                'nama_barang' => 'Daging Sirloin',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'kode_barang' => '002',
+                'nama_barang' => 'Daging Rib Eye',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_barang' => '003',
+                'nama_barang' => 'Daging T-Bone',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_barang' => '004',
+                'nama_barang' => 'Daging Chuck',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_barang' => '005',
+                'nama_barang' => 'Daging Brisket',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_barang' => '006',
+                'nama_barang' => 'Daging Flank',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_barang' => '007',
+                'nama_barang' => 'Daging Shank',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_barang' => '008',
+                'nama_barang' => 'Daging Short Rib',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_barang' => '009',
+                'nama_barang' => 'Daging Striploin',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_barang' => '010',
+                'nama_barang' => 'Daging Rump Steak',
+                'nama_kategori' => 'Daging Sapi',
+                'deskripsi' => '',
+                'jumlah' => '20',
+                'harga_beli' => '30000',
+                'harga_jual' => '32000',
+                'satuan' => 'kg',
+                'created_at' => date('Y-m-d H:i:s')
+            ]
         ]);
-       }
     }
 }

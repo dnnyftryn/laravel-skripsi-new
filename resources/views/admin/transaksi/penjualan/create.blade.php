@@ -46,9 +46,9 @@
                     <input type="text" class="form-control harga_beli_new" placeholder="Harga Barang"  id="harga_beli_new" name="harga_beli_new">
                 </div>
             </div>
-            <div class="form-group col-1">
+            <div class="form-group col-1" hidden>
                 <label for="satuan">Satuan</label>
-                <input type="text" class="form-control" placeholder="Satuan Barang" id="satuan" name="satuan">
+                <input type="text" class="form-control" placeholder="Satuan Barang" value="KG" id="satuan" name="satuan">
             </div>
             <div class="form-group col-1">
                 <label for="discountBarang">

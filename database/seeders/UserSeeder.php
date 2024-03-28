@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
                 'email' => 'user@gmail.com',
                 'password' => Hash::make('password'),
                 'type' => 3
-            ], 
+            ],
             [
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
         ];
         DB::table('users')->insert($data);
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 8; $i++) {
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->email,
